@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Black Overlay",
+  "name": "a11y Simulator",
   "version": "1.0",
   "description": "",
   "permissions": ["activeTab", "tabs"],
