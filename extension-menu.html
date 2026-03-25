@@ -8,6 +8,7 @@
 <body>
     <main class="extension-menu">
         <h1 class="title"> A11y Simulator</h1>
+        <section>
         <div class="buttons">
             <button id="orange-colour">
                 Orange Colour
@@ -15,6 +16,20 @@
             <button id="black-overlay">
                 Black Overlay
             </button>
+        </section>
+        <section>
+            <p> Visual impairment</p>
+
+            <button class="disability-button"  id="button-visually-impaired">Visually impaired</button>
+            <input type="range" min="0" max="50" value="2" class="intensity-slider" id="intensity-range">
+            <button class="disability-button" id="button-maculadeformation">Macular degeneration</button>
+        </section>
+        <section>
+            <p> Neurological impairment</p>
+
+            <button class="disability-button">dyslexic</button>
+            <button class="disability-button">ADHD</button>
+        </section>
         </div>
     </main>
     <script src="dist/listeners.js"></script>

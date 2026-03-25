@@ -10,7 +10,8 @@ function createEventListener(props: CreateEventListenerProps) {
         return;
     }
 
-    htmlElement.addEventListener(eventName, function() {
+    htmlElement.addEventListener(eventName, function(event: Event ) {
+        const target = event.target as HTMLInputElement;
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs: Tab[]) {
             const currentTab: Tab = tabs[0];
             const url: string | undefined = currentTab.url;
@@ -22,7 +23,7 @@ function createEventListener(props: CreateEventListenerProps) {
             }
 
             if(url.startsWith("http")) {
-                chrome.tabs.sendMessage(id, messageAction);
+                chrome.tabs.sendMessage(id, {action: messageAction, value: target.value});
             } else {
                 alert("Deze extensie werkt alleen op HTTP/HTTPS websites");
             }
@@ -32,4 +33,6 @@ function createEventListener(props: CreateEventListenerProps) {
 
 createEventListener({elementId: "black-overlay", eventName: "click", messageAction: "blackOverlay"});
 createEventListener({elementId: "orange-colour", eventName: "click", messageAction: "orangeColour"});
-
+createEventListener({elementId:"button-visually-impaired",eventName:"click", messageAction:"toggle-button-visually-impaired"});
+createEventListener({elementId:"button-maculadeformation",eventName:"click", messageAction:"toggle-button-maculadeformation"});
+createEventListener({elementId:"intensity-range",eventName: "input", messageAction:"toggle-intensity-range"});
