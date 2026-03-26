@@ -34,6 +34,22 @@
     }
 }
 
+.dyslexia {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+        font-weight: 600;
+    }
+
+    input {
+        cursor: pointer;
+    }
+
+
+}
+
 
 .blackOverlay {
     position: absolute;
