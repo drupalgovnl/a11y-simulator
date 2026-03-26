@@ -4,4 +4,4 @@ export type CreateEventListenerProps = {
     messageAction: MessageAction;
 }
 
-export type MessageAction = "blackOverlay" | "redOverlay" | "orangeColour";
+export type MessageAction = "blackOverlay" | "redOverlay" | "orangeColour" | "tremor";

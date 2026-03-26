@@ -1,5 +1,5 @@
 import {MessageAction} from "./types";
-import {orangeColour, toggleOverlay} from "./functions/overlay";
+import {orangeColour, toggleOverlay, tremor} from "./functions/overlay";
 
 chrome.runtime.onMessage.addListener((message: MessageAction) => {
     switch(message) {
@@ -8,6 +8,9 @@ chrome.runtime.onMessage.addListener((message: MessageAction) => {
             break;
         case "orangeColour":
             orangeColour();
+            break;
+        case "tremor":
+            tremor();
             break;
     }
 })

@@ -32,4 +32,5 @@ function createEventListener(props: CreateEventListenerProps) {
 
 createEventListener({elementId: "black-overlay", eventName: "click", messageAction: "blackOverlay"});
 createEventListener({elementId: "orange-colour", eventName: "click", messageAction: "orangeColour"});
+createEventListener({elementId: "tremor", eventName: "click", messageAction: "tremor"});
 
