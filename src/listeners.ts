@@ -34,4 +34,5 @@ createEventListener({elementId: "black-overlay", eventName: "click", messageActi
 createEventListener({elementId: "orange-colour", eventName: "click", messageAction: "orangeColour"});
 createEventListener({elementId: "mirroring", eventName: "change", messageAction: "mirrorFunctionality"});
 createEventListener({elementId: "spaces", eventName: "change", messageAction: "spaces"});
+createEventListener({elementId: "switching", eventName: "change", messageAction: "switching"});
 

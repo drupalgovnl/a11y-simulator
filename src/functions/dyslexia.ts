@@ -8,11 +8,95 @@
 
 let mirrorActive: boolean = false;
 let spacesActive: boolean = false;
+let switchFunctionalityActive: boolean = false;
 const mirrorDictionary: Record<string, string> = {};
 const spacesDictionary: Record<string, string> = {};
+const switchDictionary: Record<string, string> = {};
+
+export function switchChars() {
+    let node;
+
+    const htmlWalker = getTreeWalker();
+    while(node = htmlWalker.nextNode()) {
+        const value: string | null = node.nodeValue;
+
+        if(!value || value.trim().length === 0) {
+            continue;
+        }
+
+        const words: string[] = value.split(" ");
+        const newWords: string[] = [];
+
+        for(const word of words) {
+            const shouldSwitch = shouldTrigger(100, 40);
+
+            if(shouldSwitch) {
+                let newWord: string = "";
+
+                const maxIndex = word.length - 1;
+                const randomIndex1 = randomNumber(maxIndex);
+                const randomIndex2 = randomNumber(maxIndex);
+
+                const char1 = word[randomIndex1];
+                const char2 = word[randomIndex2];
+
+                for(let i = 0; i < word.length; i++) {
+                    if(i === randomIndex1) {
+                        newWord += char2;
+                    } else if(i === randomIndex2) {
+                        newWord += char1;
+                    } else {
+                        newWord += word[i];
+                    }
+                }
+                newWords.push(newWord);
+            } else {
+                newWords.push(word)
+            }
+
+        }
+
+        const newValue = newWords.join(" ");
+        switchDictionary[newValue] = value;
+        node.nodeValue = newValue;
+    }
+}
+
+export function unswitchChars() {
+    const htmlWalker: TreeWalker = getTreeWalker();
+
+    let node;
+    while(node = htmlWalker.nextNode()) {
+        const value: string | null = node.nodeValue;
+
+        if (!value || value.trim().length === 0) {
+            continue;
+        }
+
+        if(switchDictionary[value]) {
+            node.nodeValue = switchDictionary[value];
+            delete(switchDictionary[value])
+        }
+
+    }
+}
+
+export function switchFunctionality() {
+    if(switchFunctionalityActive) {
+        unswitchChars();
+        switchFunctionalityActive = false;
+    } else {
+        switchChars();
+        switchFunctionalityActive = true;
+    }
+}
 
 function shouldTrigger(max: number, chance: number): boolean {
-    return Math.floor(Math.random() * max) < chance;
+    return randomNumber(max) < chance;
+}
+
+function randomNumber(max: number) {
+    return Math.floor(Math.random() * max);
 }
 
 export function mirrorFunctionality() {
