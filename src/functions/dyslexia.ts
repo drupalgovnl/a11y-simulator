@@ -7,11 +7,11 @@
 //5. change location of letters in a word (without the dancing)
 
 let mirrorActive: boolean = false;
-const mirrorDictionary: Record<string, string> = {}
+let spacesActive: boolean = false;
+const mirrorDictionary: Record<string, string> = {};
+const spacesDictionary: Record<string, string> = {};
 
 function shouldTrigger(max: number, chance: number): boolean {
-    const number = Math.floor(Math.random() * max);
-    console.log(number);
     return Math.floor(Math.random() * max) < chance;
 }
 
@@ -24,6 +24,69 @@ export function mirrorFunctionality() {
         mirrorActive = true;
     }
 }
+
+export function spacesFunctionality() {
+    if(spacesActive) {
+        unarrangeSpace();
+        spacesActive = false;
+    } else {
+        arrangeSpaces();
+        spacesActive = true;
+    }
+}
+
+export function arrangeSpaces() {
+    const htmlWalker: TreeWalker = getTreeWalker();
+
+    let node;
+    while(node = htmlWalker.nextNode()) {
+        const value: string | null = node.nodeValue;
+
+        if(!value || value.trim().length === 0) {
+            continue;
+        }
+
+        const omittedSpaces: string = value.replaceAll(" ", "");
+        let toReturn: string = "";
+        let justAddedSpace: boolean = false;
+
+        for(let char of omittedSpaces.split("")) {
+            const shouldAddSpace = shouldTrigger(100, 33);
+
+            if((shouldAddSpace || char === ".") && (!justAddedSpace)) {
+                toReturn += char + " "
+                justAddedSpace = true;
+            } else {
+                toReturn += char;
+                justAddedSpace = false;
+            }
+        }
+
+        spacesDictionary[toReturn] = value;
+        node.nodeValue = toReturn;
+    }
+
+}
+
+export function unarrangeSpace() {
+    const htmlWalker: TreeWalker = getTreeWalker();
+
+    let node;
+    while(node = htmlWalker.nextNode()) {
+        const value: string | null = node.nodeValue;
+
+        if (!value || value.trim().length === 0) {
+            continue;
+        }
+
+        if(spacesDictionary[value]) {
+            node.nodeValue = spacesDictionary[value];
+            delete(spacesDictionary[value])
+        }
+
+    }
+}
+
 
 export function getTreeWalker() {
     return document.createTreeWalker(
