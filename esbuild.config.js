@@ -2,9 +2,8 @@ const esbuild = require("esbuild");
 
 esbuild.build({
     entryPoints: [
-        "src/listeners.ts",
+        "src/EventListeners.ts",
         "src/content.ts",
-        "src/functions/overlay.ts",
     ],
     bundle: true,
     outdir: "dist",

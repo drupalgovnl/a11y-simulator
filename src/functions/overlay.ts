@@ -23,9 +23,6 @@ export function orangeColour() {
         document.body.style.backgroundColor = originalBackgroundColor;
     }
 }
-
-
-
 /**
  * Creates an overlay with a blur effect on the entire page.
  */
@@ -57,40 +54,50 @@ export function createOverlay() {
     }
 }
 
-export function createMacularDegenerationEffect() {
+export function createGlaucoomEffect() {
     // create multiple divs, 
     // create overlay
     if(createOverlay()) {
         // create more divs in the center
-        let maculaDiv = document.getElementById("macula-div");
-        
-        if(!maculaDiv) {
-            maculaDiv = document.createElement('div');
-            maculaDiv.id = "macula-div";
+        const glaucomaOverlay = document.createElement("div");
+        // default settings for glaucoma.
+        glaucomaOverlay.id = "glaucoma-overlay";
+        glaucomaOverlay.style.position = "fixed";
+        glaucomaOverlay.style.inset = "0";
+        glaucomaOverlay.style.pointerEvents = "none";
+        glaucomaOverlay.style.zIndex = "999999";
 
-            Object.assign(maculaDiv.style, {
-                position: "fixed",
-                width: "220px",
-                height: "100px",
-                margin: "10px 0 0 -10px",  
-                background: 'rgba(255,255,255,0.2)',
-                borderRadius:"70% 50% 70% 50%",
-                color: "red",
-                zIndex: "999",
-                left: "50%",
-                top: "50%"
+        for (let i = 0; i < 8; i++) {
+            const spot = document.createElement("div");
+
+            const size = 100 + Math.random() * 250;
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+
+            Object.assign(spot.style, {
+                position: "absolute",
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${x}px`,
+                top: `${y}px`,
+                borderRadius: "50%",
+                background: "rgba(0,0,0,0.95)",
+                filter: "blur(30px)",
+                transform: "translate(-50%, -50%)"
             });
 
-            document.body.appendChild(maculaDiv);
+            glaucomaOverlay.appendChild(spot);
         }
 
+        document.body.appendChild(glaucomaOverlay);
+
         // toggle potentie om dit in een functie te stoppen aangezien hier meerdere elementen van gebruik moeten maken.
-        if (maculaDiv.getAttribute('data-active') === 'true') {
-            maculaDiv.style.display = 'none';
-            maculaDiv.setAttribute('data-active', 'false');
+        if (glaucomaOverlay.getAttribute('data-active') === 'true') {
+            glaucomaOverlay.style.display = 'none';
+            glaucomaOverlay.setAttribute('data-active', 'false');
         } else {
-            maculaDiv.style.display = 'block';
-            maculaDiv.setAttribute('data-active', 'true');
+            glaucomaOverlay.style.display = 'block';
+            glaucomaOverlay.setAttribute('data-active', 'true');
         }
     }
 }
