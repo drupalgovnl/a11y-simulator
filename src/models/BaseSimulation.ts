@@ -1,16 +1,18 @@
 import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 
 export abstract class BaseSimulation implements IDisabilitySimulation {
-    protected isActive: boolean = true;
+    protected isActive: boolean = false;
 
     activate(): void {
-        console.log("BaseSimulation activate", this.isActive);
+        if(this.isActive) return;
         this.isActive = true;
+        console.log("BaseSimulation activate", this.isActive);
         this.onActivate();
     }
     deactivate(): void {
-        console.log("BaseSimulation deactivate", this.isActive);
+        if(!this.isActive) return;
         this.isActive = false;
+        console.log("BaseSimulation deactivate", this.isActive);
         this.onDeactivate();
     }
 

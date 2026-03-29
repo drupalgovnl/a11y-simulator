@@ -11,7 +11,7 @@ export class ExtensionMenuController {
         //  Need to change the send message string 0 because not always you have intensity when activating a dissability...
         console.log('messageeeeeeeee1');
 
-        this.MessagingService.sendMessage(message)
+        this.MessagingService.sendMessage(message);
     }
 
     public activateCataract(message: Message) { 
@@ -22,6 +22,10 @@ export class ExtensionMenuController {
     
     public activateVisualImpaired(message: Message) {
         console.log('messageeeeeeeee3');
-        this.MessagingService.sendMessage(message)
+        this.MessagingService.sendMessage(message);
+    }
+
+    public activateParkinsons(message: Message) {
+        this.MessagingService.sendMessage(message);
     }
 }

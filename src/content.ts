@@ -33,6 +33,9 @@ chrome.runtime.onMessage.addListener((object, sender, response) => {
             if(!value) return;
             editIntensity(value);
         break;
+        case "parkinsons": 
+            simulationController.activate("orangeColour")
+        break;
     }
 })
 

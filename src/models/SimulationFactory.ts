@@ -5,6 +5,7 @@ import { OverlayManager } from "../DOM-Logic/OverlayManager";
 import { GlaucomaSimulation } from "./GlaucomaSimulation";
 import { Disability } from "./types";
 import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
+import { ParkinsonsSimulation } from "./ParkinsonsSimulation";
 
 export class SimulationFactory {
     private overlayManager: OverlayManager;
@@ -22,6 +23,8 @@ export class SimulationFactory {
                 return new CataractSimulation(this.overlayManager);
             case "visual-impaired":
                 return new VisualImpairedSimulation(this.overlayManager);
+            case "parkinsons":
+                return new ParkinsonsSimulation(this.overlayManager);
         
             default:
             throw new Error(`There is no simulation of this type ${type}`);

@@ -4,7 +4,7 @@ import { MessagingService } from "./services/MessagingService";
 
 const messagingService: MessagingService = new MessagingService()
 const extensionMenuController: ExtensionMenuController = new ExtensionMenuController(messagingService);
-
+// state bijhouden van active of niet__ >
 function createEventListener(props: CreateEventListenerProps) {
     // deconstruct the properties to use.
     console.log('eventlistener test 123 321');
@@ -20,6 +20,9 @@ function createEventListener(props: CreateEventListenerProps) {
         const target = event.target as HTMLInputElement;
         console.log('inside addeventListener the target is: ', target);
         const message: Message = {disability, value: target.value};
+        // is active or not ? 
+
+        // maybe a aray with disability and active status, => if same disability then active is switched, otherwise its active. -> 
        
         switch (disability) {
             case "glaucoma":
@@ -31,6 +34,8 @@ function createEventListener(props: CreateEventListenerProps) {
             case "visual-impaired":
                 extensionMenuController.activateVisualImpaired(message);
                 break;
+            case "parkinsons":
+                extensionMenuController.activateParkinsons(message);
             default:
                 return;
         }

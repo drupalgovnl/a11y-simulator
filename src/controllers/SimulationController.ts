@@ -12,7 +12,7 @@ export class SimulationController {
 
     //  first deactivates the current activation if active. then activates the new one.
     public activate(type:Disability): void {
-        this.ActivateSimulation?.deactivate();
+        // this.ActivateSimulation?.deactivate();
         this.ActivateSimulation = this.SimulationFactory.create(type)
 
         this.ActivateSimulation.activate();
