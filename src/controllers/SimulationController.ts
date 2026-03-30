@@ -24,4 +24,8 @@ export class SimulationController {
         this.ActivateSimulation?.deactivate();
         this.ActivateSimulation = null;
     }
+
+    public update(): void {
+        
+    }
 }

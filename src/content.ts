@@ -13,6 +13,7 @@ chrome.runtime.onMessage.addListener((object, sender, response) => {
     console.log('object', object);
     const { disability, value } = object as Message;
     console.log('listening, to ', disability, value);
+    let isActive = false;
 
     switch(disability) {
         case "blackOverlay":
@@ -23,18 +24,25 @@ chrome.runtime.onMessage.addListener((object, sender, response) => {
             break;
         case "glaucoma":
             simulationController.activate("glaucoma");
+            simulationController.deactivate();
         break;
         case "visual-impaired":
             //  add slider info...-> 
-            simulationController.activate("visual-impaired");
+            if(isActive)  {
+                simulationController.deactivate();
+                isActive = false;
+            } else {
+                simulationController.activate("visual-impaired");
+                isActive = true;
+            }
         break;
         case "cataract": 
-            console.log("de nieuwe value is: " , value)
+            console.log("de nieuwe value is: " , value);
             if(!value) return;
             editIntensity(value);
         break;
         case "parkinsons": 
-            simulationController.activate("orangeColour")
+            simulationController.activate("parkinsons");
         break;
     }
 })

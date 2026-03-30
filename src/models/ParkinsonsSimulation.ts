@@ -12,7 +12,6 @@ export class ParkinsonsSimulation extends BaseSimulation  {
     
     protected onActivate(): void {
         this.OverlayManager.createOverlay(this.OverlayName);
-        console.log("applying ParkinsonsSimulation effect");
         this.OverlayManager.applyTremorEffect(this.OverlayName);
     }
 

@@ -12,8 +12,8 @@ export class OverlayManager {
     public removeOverlay(id:string):void {
         const overlay = document.getElementById(id);
         if(!overlay) return;
-        console.log('removing overlay', overlay, id)
-        overlay.remove();
+        console.log('removeOverlay', overlay, id)
+        overlay.parentNode?.removeChild(overlay);
     }
 
     public applyGlaucomaEffect(id:string): void {

@@ -12,7 +12,6 @@ export class VisualImpairedSimulation extends BaseSimulation {
     }
 
     protected onActivate(): void {
-        // this.OverlayManager.removeOverlay(this.OverlayName);
         console.log('does this activate on the same click');    
         this.OverlayManager.createOverlay(this.OverlayName);
         this.OverlayManager.applyVisualImpairmentEffect(this.OverlayName);

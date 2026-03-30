@@ -26,6 +26,7 @@ export class ExtensionMenuController {
     }
 
     public activateParkinsons(message: Message) {
+        console.log("activateParkinsons");
         this.MessagingService.sendMessage(message);
     }
 }

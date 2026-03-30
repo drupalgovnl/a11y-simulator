@@ -7,7 +7,6 @@ const extensionMenuController: ExtensionMenuController = new ExtensionMenuContro
 // state bijhouden van active of niet__ >
 function createEventListener(props: CreateEventListenerProps) {
     // deconstruct the properties to use.
-    console.log('eventlistener test 123 321');
     const { elementId, eventName, disability } = props;
     const htmlElement: HTMLElement | null = document.getElementById(elementId);
 
@@ -46,4 +45,5 @@ createEventListener({elementId: "black-overlay", eventName: "click", disability:
 createEventListener({elementId: "orange-colour", eventName: "click", disability: "orangeColour"});
 createEventListener({elementId: "button-glaucoma", eventName: "click", disability: "glaucoma"});
 createEventListener({elementId: "button-visually-impaired", eventName: "click", disability: "visual-impaired"});
+createEventListener({elementId: "button-tremor", eventName: "click", disability: "parkinsons"})
 // createEventListener({elementId: "intensity-range", eventName: "input", disability: "toggle-intensity-range"}); @TODO work make sure to add the slider for all disabilities.
