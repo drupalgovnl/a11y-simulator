@@ -22,7 +22,7 @@ export class CataractSimulation implements IDisabilitySimulation {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
     
-    public onUpdate(value: string): void {
-       this.OverlayManager.updateCataractEffect(this.OverlayName, value);
+    public async onUpdate(value: string): Promise<void> {
+       await this.OverlayManager.updateCataractEffect(this.OverlayName, value);
     }
 }

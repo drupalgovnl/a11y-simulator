@@ -90,7 +90,7 @@ export class OverlayManager {
         `;
     }
 
-    updateGlaucomaEffect(id: string, value: string):void {
+    public async updateGlaucomaEffect(id: string, value: string):Promise<void> {
         let overlay = document.getElementById(id); 
         if(!overlay) return;
         // "1 -> 100"
@@ -126,7 +126,7 @@ export class OverlayManager {
         document.body.appendChild(overlay);
     }
 
-    public updateVisualImparedEffect(id: string, value: string) {
+    public async updateVisualImparedEffect(id: string, value: string): Promise<void> {
         let overlay = document.getElementById(id); 
         if(!overlay) return;
         Object.assign(overlay.style, {
@@ -157,7 +157,7 @@ export class OverlayManager {
         });
     }
 
-    public updateCataractEffect(id: string, value: string):void {
+    public async updateCataractEffect(id: string, value: string):Promise<void> {
         let overlay = document.getElementById(id); 
         const sliderValue = parseInt(value); // 0 - 50
 

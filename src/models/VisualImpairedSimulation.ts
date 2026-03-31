@@ -19,8 +19,8 @@ export class VisualImpairedSimulation implements IDisabilitySimulation {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
 
-    public onUpdate(value: string): void {
-       this.OverlayManager.updateVisualImparedEffect(this.OverlayName, value);
+    public async onUpdate(value: string): Promise<void> {
+       await this.OverlayManager.updateVisualImparedEffect(this.OverlayName, value);
     }
 
 }

@@ -19,7 +19,7 @@ export class GlaucomaSimulation implements IDisabilitySimulation  {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
 
-    public onUpdate(value: string): void {
-        this.OverlayManager.updateGlaucomaEffect(this.OverlayName, value)
+    public async onUpdate(value: string): Promise<void> {
+        await this.OverlayManager.updateGlaucomaEffect(this.OverlayName, value)
     }
 }

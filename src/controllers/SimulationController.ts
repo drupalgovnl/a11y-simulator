@@ -55,10 +55,15 @@ export class SimulationController {
         }
     }
 
-    public update(value: string) {
+    // refactor
+    public async update(value: string) {
         for (const [disability, simulation] of Object.entries(this.ActiveSimulations)) {
-            if(!simulation) continue;
-            simulation.onUpdate(value);
+            // if(!simulation) continue;
+            if(simulation) {
+                console.log('disability that is going to be updated', disability, simulation);
+                await simulation.onUpdate(value);    
+            }
+            
         }
     }
 
