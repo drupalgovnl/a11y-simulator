@@ -17,15 +17,20 @@ export type Message = {
 }
 // export type MessageAction = "blackOverlay" | "redOverlay" | "orangeColour" | "toggle-button-visually-impaired" | "toggle-button-glaucoma" | "toggle-intensity-range";
 export type Disability =
+    | DyslexiaTypes
     | "glaucoma"
     | "cataract"
     | "visual-impaired"
     | "blackOverlay"
     | "orangeColour"
     | "parkinsons"
-    | "mirrorFunctionality"
-    | "spaces"
-    | "switching"
-    | "orderFunctionality"
+    | "dyslexia"
     | "toggle-intensity-range"
     ;
+
+export type DyslexiaTypes =
+    | "dyslexiaMirrorFunctionality"
+    | "dyslexiaSpaces"
+    | "dyslexiaSwitching"
+    | "dyslexiaOrderFunctionality"
+

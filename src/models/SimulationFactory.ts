@@ -7,6 +7,11 @@ import { Disability } from "./types";
 import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
 import { ParkinsonsSimulation } from "./ParkinsonsSimulation";
 import {BlackOverlaySimulation} from "./BlackOverlaySimulation";
+import {DyslexiaSimulation} from "./dyslexia/DyslexiaSimulation";
+import {DyslexiaMirrorFunctionality} from "./dyslexia/DyslexiaMirrorFunctionality";
+import {DyslexiaSpacesFunctionality} from "./dyslexia/DyslexiaSpacesFunctionality";
+import {DyslexiaSwitchFunctionality} from "./dyslexia/DyslexiaSwitchFunctionality";
+import {DyslexiaWordOrderFunctionality} from "./dyslexia/DyslexiaWordOrderFunctionality";
 
 export class SimulationFactory {
     private overlayManager: OverlayManager;
@@ -28,6 +33,17 @@ export class SimulationFactory {
                 return new ParkinsonsSimulation(this.overlayManager);
             case "blackOverlay":
                 return new BlackOverlaySimulation(this.overlayManager);
+            case "dyslexia":
+                return new DyslexiaSimulation();
+            case "dyslexiaMirrorFunctionality":
+                return new DyslexiaMirrorFunctionality();
+            case "dyslexiaSpaces":
+                return new DyslexiaSpacesFunctionality();
+            case "dyslexiaSwitching":
+                return new DyslexiaSwitchFunctionality();
+            case "dyslexiaOrderFunctionality":
+                return new DyslexiaWordOrderFunctionality();
+
             default:
             throw new Error(`There is no simulation of this type ${type}`);
         }

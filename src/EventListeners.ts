@@ -40,6 +40,26 @@ function createEventListener(props: CreateEventListenerProps) {
                 console.log("YEAH")
                 extensionMenuController.activateBlackOverlay(message);
                 break;
+            case "dyslexia":
+                console.log("wow");
+                extensionMenuController.activateDyslexia(message);
+                break;
+            case "dyslexiaOrderFunctionality":
+                console.log("wow");
+                extensionMenuController.switchWords(message);
+                break;
+            case "dyslexiaMirrorFunctionality":
+                console.log("wow");
+                extensionMenuController.activateMirror(message);
+                break;
+            case "dyslexiaSwitching":
+                console.log("wow");
+                extensionMenuController.activateDyslexiaSwitchChars(message);
+                break;
+            case "dyslexiaSpaces":
+                console.log("wow");
+                extensionMenuController.activateSpaces(message);
+                break;
             default:
                 return;
         }
@@ -50,9 +70,10 @@ createEventListener({elementId: "blackOverlay", eventName: "click", disability: 
 createEventListener({elementId: "orange-colour", eventName: "click", disability: "orangeColour"});
 createEventListener({elementId: "button-glaucoma", eventName: "click", disability: "glaucoma"});
 createEventListener({elementId: "button-visually-impaired", eventName: "click", disability: "visual-impaired"});
+createEventListener({elementId: "activateDyslexia", eventName: "click", disability: "dyslexia"});
 createEventListener({elementId: "button-tremor", eventName: "click", disability: "parkinsons"});
-createEventListener({elementId: "mirroring", eventName: "change", disability: "mirrorFunctionality"});
-createEventListener({elementId: "spaces", eventName: "change", disability: "spaces"});
-createEventListener({elementId: "switching", eventName: "change", disability: "switching"});
-createEventListener({elementId: "word-order", eventName: "change", disability: "orderFunctionality"});
+createEventListener({elementId: "mirroring", eventName: "change", disability: "dyslexiaMirrorFunctionality"});
+createEventListener({elementId: "spaces", eventName: "change", disability: "dyslexiaSpaces"});
+createEventListener({elementId: "switching", eventName: "change", disability: "dyslexiaSwitching"});
+createEventListener({elementId: "word-order", eventName: "change", disability: "dyslexiaOrderFunctionality"});
 // createEventListener({elementId: "intensity-range", eventName: "input", disability: "toggle-intensity-range"}); @TODO work make sure to add the slider for all disabilities.

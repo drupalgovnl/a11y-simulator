@@ -6,16 +6,17 @@ export class SimulationController {
     private SimulationFactory: SimulationFactory;
     private activeSimulations: Record<Disability, IDisabilitySimulation | null> = {
         "toggle-intensity-range": null,
-        mirrorFunctionality: null,
-        orderFunctionality: null,
-        spaces: null,
-        switching: null,
+        dyslexia: null,
         "glaucoma": null,
         "cataract": null,
         "visual-impaired": null,
         "blackOverlay": null,
         "orangeColour": null,
-        "parkinsons": null
+        "parkinsons": null,
+        dyslexiaMirrorFunctionality: null,
+        dyslexiaOrderFunctionality: null,
+        dyslexiaSpaces: null,
+        dyslexiaSwitching: null
     }
 
     constructor(simulationFactory: SimulationFactory){
@@ -23,6 +24,7 @@ export class SimulationController {
     }
 
     public check(disability: Disability) {
+        console.log(disability);
         if(!this.activeSimulations[disability]) {
             this.activate(disability);
         } else {
