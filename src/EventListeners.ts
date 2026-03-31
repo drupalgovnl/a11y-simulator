@@ -1,4 +1,4 @@
-import {CreateEventListenerProps, Message} from "./models/types";
+import {CreateEventListenerProps, Message} from "./models/Types";
 import { ExtensionMenuController } from "./controllers/ExtensionMenuController";
 import { MessagingService } from "./services/MessagingService";
 
@@ -58,4 +58,3 @@ createEventListener({elementId: "mirroring", eventName: "change", disability: "m
 createEventListener({elementId: "spaces", eventName: "change", disability: "spaces"});
 createEventListener({elementId: "switching", eventName: "change", disability: "switching"});
 createEventListener({elementId: "word-order", eventName: "change", disability: "orderFunctionality"});
-// createEventListener({elementId: "intensity-range", eventName: "input", disability: "toggle-intensity-range"}); @TODO work make sure to add the slider for all disabilities.

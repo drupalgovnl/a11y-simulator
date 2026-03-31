@@ -1,6 +1,6 @@
 import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 import { SimulationFactory } from "../models/SimulationFactory";
-import { Disability } from "../models/types";
+import { Disability, Message } from "../models/Types";
 
 export class SimulationController {
     private SimulationFactory: SimulationFactory;
@@ -23,11 +23,19 @@ export class SimulationController {
         this.SimulationFactory = simulationFactory;
     }
 
-    public check(disability: Disability) {
-        if(!this.ActiveSimulations[disability]) {
-            this.activate(disability);
+    // TODO refactor.
+    public check(message: Message) {
+        console.log("check message", message);
+        if(message.disability === "intensity_range") { 
+            if(!message.value) return;
+            console.log('update the message');
+            this.update(message.value);
         } else {
-            this.deactivate(disability);
+            if(!this.ActiveSimulations[message.disability]) {
+                this.activate(message.disability);
+            } else {
+                this.deactivate(message.disability);
+            }
         }
     }
 
@@ -41,15 +49,17 @@ export class SimulationController {
     //  resets current simulation
     public deactivate(disability: Disability): void {
         const activeDisability: IDisabilitySimulation | null = this.ActiveSimulations[disability];
-
         if(activeDisability) {
             activeDisability.onDeactivate();
             this.ActiveSimulations[disability] = null;
         }
     }
 
-    public change(value: string) {
-
+    public update(value: string) {
+        for (const [disability, simulation] of Object.entries(this.ActiveSimulations)) {
+            if(!simulation) continue;
+            simulation.onUpdate(value);
+        }
     }
 
 }

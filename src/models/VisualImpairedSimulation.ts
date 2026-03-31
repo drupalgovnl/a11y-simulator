@@ -10,16 +10,16 @@ export class VisualImpairedSimulation implements IDisabilitySimulation {
         this.OverlayManager = overlayManager;
     }
 
-    protected onActivate(): void {
+    public onActivate(): void {
         this.OverlayManager.createOverlay(this.OverlayName);
         this.OverlayManager.applyVisualImpairmentEffect(this.OverlayName);
     }
 
-    protected onDeactivate(): void {
+    public onDeactivate(): void {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
 
-    protected onUpdate(value: string): void {
+    public onUpdate(value: string): void {
        this.OverlayManager.updateVisualImparedEffect(this.OverlayName, value);
     }
 

@@ -1,4 +1,4 @@
-import { Message } from "./models/types";
+import { Message } from "./models/Types";
 import { OverlayManager } from "./DOM-Logic/OverlayManager";
 import { SimulationController } from "./controllers/SimulationController";
 import { SimulationFactory } from "./models/SimulationFactory";
@@ -10,7 +10,7 @@ const simulationController: SimulationController = new SimulationController(simu
 let isActive = false;
 chrome.runtime.onMessage.addListener((object, sender, response) => {
     const { disability, value } = object as Message;
-    console.log('listening, to ', disability, value);
-    simulationController.check(disability)
-})
+    console.log('listening, to ', disability, value, 'check123321', value);
+    simulationController.check(object)
+});
 

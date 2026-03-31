@@ -3,7 +3,7 @@ import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 import { CataractSimulation } from "./CataractSimulation";
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
 import { GlaucomaSimulation } from "./GlaucomaSimulation";
-import { Disability } from "./types";
+import { Disability } from "./Types";
 import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
 import { ParkinsonsSimulation } from "./ParkinsonsSimulation";
 import {BlackOverlaySimulation} from "./BlackOverlaySimulation";
