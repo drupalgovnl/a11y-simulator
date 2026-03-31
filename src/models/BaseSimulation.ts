@@ -16,9 +16,16 @@ export abstract class BaseSimulation implements IDisabilitySimulation {
         this.onDeactivate();
     }
 
+    // Todo type maken zodat value string, int test.
+    update(value: string): void {
+        if(!this.isActive) return;
+        this.onUpdate(value);
+    }
+
 
     // these functions are overridable
     protected abstract onActivate():void;
     protected abstract onDeactivate():void;
+    protected abstract onUpdate(value: string): void;
     // need to create onupdate.
 }

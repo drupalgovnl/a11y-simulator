@@ -1,4 +1,4 @@
-import {Message} from "./models/types";
+import {Message} from "./models/Types";
 import {orangeColour, toggleOverlay, editIntensity} from "./functions/overlay";
 import { OverlayManager } from "./DOM-Logic/OverlayManager";
 import { SimulationController } from "./controllers/SimulationController";

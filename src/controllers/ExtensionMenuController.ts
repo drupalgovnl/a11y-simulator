@@ -1,4 +1,4 @@
-import { Message } from "../models/types";
+import { Message } from "../models/Types";
 import { MessagingService } from "../services/MessagingService";
 
 export class ExtensionMenuController {

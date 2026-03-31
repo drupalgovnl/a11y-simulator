@@ -1,6 +1,6 @@
 import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 import { SimulationFactory } from "../models/SimulationFactory";
-import { Disability } from "../models/types";
+import { Disability } from "../models/Types";
 
 export class SimulationController {
     private SimulationFactory: SimulationFactory;
@@ -25,7 +25,7 @@ export class SimulationController {
         this.ActivateSimulation = null;
     }
 
-    public update(): void {
-        
+    public update(value:string): void {
+        this.ActivateSimulation?.update(value);
     }
 }

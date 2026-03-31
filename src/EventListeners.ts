@@ -1,4 +1,4 @@
-import {CreateEventListenerProps, Message} from "./models/types";
+import {CreateEventListenerProps, Message} from "./models/Types";
 import { ExtensionMenuController } from "./controllers/ExtensionMenuController";
 import { MessagingService } from "./services/MessagingService";
 

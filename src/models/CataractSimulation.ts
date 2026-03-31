@@ -17,4 +17,8 @@ export class CataractSimulation extends BaseSimulation {
     protected onDeactivate(): void {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
+    
+    protected onUpdate(value: string): void {
+        throw new Error("Method not implemented.");
+    }
 }
