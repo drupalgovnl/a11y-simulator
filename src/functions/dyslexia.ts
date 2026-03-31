@@ -9,9 +9,11 @@
 let mirrorActive: boolean = false;
 let spacesActive: boolean = false;
 let switchFunctionalityActive: boolean = false;
+let changeWordOrderActive: boolean = false;
 const mirrorDictionary: Record<string, string> = {};
 const spacesDictionary: Record<string, string> = {};
 const switchDictionary: Record<string, string> = {};
+const orderDictionary: Record<string, string> = {};
 
 export function switchChars() {
     let node;
@@ -168,6 +170,70 @@ export function unarrangeSpace() {
             delete(spacesDictionary[value])
         }
 
+    }
+}
+
+export function wordOrderFunctionality() {
+    if(changeWordOrderActive) {
+        undoChangeWordOrder();
+        changeWordOrderActive = false;
+    } else {
+        changeWordOrder();
+        changeWordOrderActive = true;
+    }
+}
+
+export function changeWordOrder() {
+    let node;
+
+    const htmlWalker = getTreeWalker();
+    while(node = htmlWalker.nextNode()) {
+        const value: string | null = node.nodeValue;
+
+        if(!value || value.trim().length === 0) {
+            continue;
+        }
+
+
+        const words: string[] = value.split(" ");
+        const randomWordIndex = randomNumber(words.length-1);
+        const randomWordIndex2 = randomNumber(words.length-1);
+
+        const newWords: string[] = [];
+
+        for(let i = 0; i<words.length; i++) {
+            if(i === randomWordIndex) {
+                newWords.push(words[randomWordIndex2]);
+            } else if(i === randomWordIndex2) {
+                newWords.push(words[randomWordIndex]);
+            } else {
+                newWords.push(words[i]);
+            }
+        }
+
+        const newValue = newWords.join(" ");
+
+        orderDictionary[newValue] = value;
+        node.nodeValue = newValue;
+    }
+}
+
+export function undoChangeWordOrder() {
+    let node;
+
+    const htmlWalker = getTreeWalker();
+
+    while(node = htmlWalker.nextNode()) {
+        const value: string | null = node.nodeValue;
+
+        if(!value || value.trim().length === 0) {
+            continue;
+        }
+
+        if(orderDictionary[value]) {
+            node.nodeValue = orderDictionary[value];
+            delete(orderDictionary[value])
+        }
     }
 }
 

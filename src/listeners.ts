@@ -35,4 +35,5 @@ createEventListener({elementId: "orange-colour", eventName: "click", messageActi
 createEventListener({elementId: "mirroring", eventName: "change", messageAction: "mirrorFunctionality"});
 createEventListener({elementId: "spaces", eventName: "change", messageAction: "spaces"});
 createEventListener({elementId: "switching", eventName: "change", messageAction: "switching"});
+createEventListener({elementId: "word-order", eventName: "change", messageAction: "orderFunctionality"});
 

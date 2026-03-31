@@ -10,4 +10,5 @@ export type MessageAction =
     | "orangeColour"
     | "mirrorFunctionality"
     | "spaces"
-    | "switching";
+    | "switching"
+    | "orderFunctionality";

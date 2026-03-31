@@ -1,6 +1,11 @@
 import {MessageAction} from "./types";
 import {orangeColour, toggleOverlay} from "./functions/overlay";
-import {mirrorFunctionality, spacesFunctionality, switchFunctionality} from "./functions/dyslexia";
+import {
+    mirrorFunctionality,
+    spacesFunctionality,
+    switchFunctionality,
+    wordOrderFunctionality
+} from "./functions/dyslexia";
 
 chrome.runtime.onMessage.addListener((message: MessageAction) => {
     switch(message) {
@@ -18,6 +23,9 @@ chrome.runtime.onMessage.addListener((message: MessageAction) => {
             break;
         case "switching":
             switchFunctionality();
+            break;
+        case "orderFunctionality":
+            wordOrderFunctionality();
             break;
     }
 })
