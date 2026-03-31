@@ -23,6 +23,6 @@ export class CataractSimulation implements IDisabilitySimulation {
     }
     
     public onUpdate(value: string): void {
-        throw new Error("Method not implemented.");
+       this.OverlayManager.updateCataractEffect(this.OverlayName, value);
     }
 }
