@@ -1,5 +1,4 @@
 export class OverlayManager {
- 
     public createOverlay(id: string):void { 
         let overlay = document.getElementById(id);
 
@@ -38,7 +37,23 @@ export class OverlayManager {
         document.body.appendChild(overlay);
     }
 
-    public applyVisualImpairmentEffect(id: string):void {
+    updateGlaucomaEffect(id: string, value: string) {
+        let overlay = document.getElementById(id); 
+        if(!overlay) return;
+        // "1 -> 100"
+        let firstPercentage: number = 20 + parseInt(value);
+        let secondPercentage: number = 45 + parseInt(value);
+        let thirdPercentage: number = 100 + parseInt(value);
+        // how do i update the circle gradient with the %... with slider.->
+        Object.assign(overlay.style, {
+             background:
+                `radial-gradient(circle, rgba(0,0,0,0) ${firstPercentage}%, rgba(0,0,0,0.4) ${secondPercentage}%, rgba(0,0,0,0.85) ${thirdPercentage}%)`
+        });
+
+        document.appendChild(overlay);
+    }
+
+    public applyVisualImpairmentEffect(id: string): void {
         let overlay = document.getElementById(id);
 
         if(!overlay) return;
@@ -57,12 +72,10 @@ export class OverlayManager {
         });
         document.body.appendChild(overlay);
     }
+
     public updateVisualImparedEffect(id: string, value: string) {
         let overlay = document.getElementById(id); 
-        console.log("updateVisualImparedEffect", overlay, value);
-        console.log(!overlay);
         if(!overlay) return;
-        console.log('test123321', `blur(${value}px)`); 
         Object.assign(overlay.style, {
             backdropFilter: `blur(${value}px)`
         });
@@ -147,7 +160,5 @@ export class OverlayManager {
             requestAnimationFrame(animate);
         }
         requestAnimationFrame(animate);
-    }
-
-   
+    }   
 }
