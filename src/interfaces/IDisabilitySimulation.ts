@@ -1,5 +1,5 @@
 export interface IDisabilitySimulation {
-    activate(): void;
-    deactivate(): void;
-    update(value: string): void;
+    onActivate(): void;
+    onDeactivate(): void;
+    onUpdate(value: string): void;
 }

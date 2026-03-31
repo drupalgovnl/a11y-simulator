@@ -1,25 +1,28 @@
-import { BaseSimulation } from "./BaseSimulation";
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
+import {IDisabilitySimulation} from "../interfaces/IDisabilitySimulation";
 
-export class ParkinsonsSimulation extends BaseSimulation  {
+export class ParkinsonsSimulation implements IDisabilitySimulation  {
     private OverlayManager: OverlayManager;
     private OverlayName: string = "parkinsons-overlay";
 
     constructor(overlayManager: OverlayManager) {
-        super();
         this.OverlayManager = overlayManager;
     }
-    
-    protected onActivate(): void {
+
+    isActive(): boolean {
+        throw new Error("Method not implemented.");
+    }
+
+    public onActivate(): void {
         this.OverlayManager.createOverlay(this.OverlayName);
         this.OverlayManager.applyTremorEffect(this.OverlayName);
     }
 
-    protected onDeactivate(): void {
+    public onDeactivate(): void {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
 
-    protected onUpdate(value: string): void {
+    public onUpdate(value: string): void {
         throw new Error("Method not implemented.");
     }
 }

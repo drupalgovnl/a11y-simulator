@@ -1,27 +1,30 @@
-import { BaseSimulation } from "./BaseSimulation";
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
+import {IDisabilitySimulation} from "../interfaces/IDisabilitySimulation";
 
-export class GlaucomaSimulation extends BaseSimulation  {
+export class GlaucomaSimulation implements IDisabilitySimulation  {
     private OverlayManager: OverlayManager;
     private OverlayName: string = "glaucoma-overlay";
 
     constructor(overlayManager: OverlayManager) {
-        super();
         this.OverlayManager = overlayManager;
     }
-    
-    protected onActivate(): void {
+
+    isActive(): boolean {
+        throw new Error("Method not implemented.");
+    }
+
+    public onActivate(): void {
         console.log("creating overlay GlaucomaSimulation");
         this.OverlayManager.createOverlay(this.OverlayName);
         console.log("applying GlaucomaSimulation effect");
         this.OverlayManager.applyGlaucomaEffect(this.OverlayName);
     }
 
-    protected onDeactivate(): void {
+    public onDeactivate(): void {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
 
-    protected onUpdate(value: string): void {
+    public onUpdate(value: string): void {
         throw new Error("Method not implemented.");
     }
 }
