@@ -7,26 +7,28 @@ export class ExtensionMenuController {
         this.MessagingService = messagingService;
     }
 
-    public activateGlaucoma(message: Message) {
-        //  Need to change the send message string 0 because not always you have intensity when activating a dissability...
-        console.log('messageeeeeeeee1');
-
+    public activateGlaucoma(message: Message): void {
+        console.log('ExtensionMenuController activateGlaucoma');
         this.MessagingService.sendMessage(message);
     }
 
-    public activateCataract(message: Message) { 
-        console.log('messageeeeeeeee2');
-
+    public activateCataract(message: Message): void { 
+        console.log('ExtensionMenuController MessagingService');
         this.MessagingService.sendMessage(message);
     }
     
-    public activateVisualImpaired(message: Message) {
-        console.log('messageeeeeeeee3');
+    public activateVisualImpaired(message: Message): void {
+        console.log('ExtensionMenuController activateVisualImpaired');
         this.MessagingService.sendMessage(message);
     }
 
-    public activateParkinsons(message: Message) {
-        console.log("activateParkinsons");
+    public activateParkinsons(message: Message): void {
+        console.log("ExtensionMenuController activateParkinsons");
+        this.MessagingService.sendMessage(message);
+    }
+
+    public editIntensity(message: Message): void {
+        console.log('extensionMenuController editIntensity : ', message.value);
         this.MessagingService.sendMessage(message);
     }
 }

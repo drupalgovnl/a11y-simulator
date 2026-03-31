@@ -12,6 +12,7 @@ export class CataractSimulation extends BaseSimulation {
 
     protected onActivate(): void {
         this.OverlayManager.createOverlay(this.OverlayName);
+        this.OverlayManager.applyCataractEffect(this.OverlayName);
     }
 
     protected onDeactivate(): void {

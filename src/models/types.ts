@@ -16,4 +16,4 @@ export type Message = {
     value: string | null;
 }
 // export type MessageAction = "blackOverlay" | "redOverlay" | "orangeColour" | "toggle-button-visually-impaired" | "toggle-button-glaucoma" | "toggle-intensity-range";
-export type Disability = "glaucoma" | "cataract" | "visual-impaired" | "blackOverlay" | "orangeColour" | "parkinsons"; 
+export type Disability = "glaucoma" | "cataract" | "visual-impaired" | "blackOverlay" | "orangeColour" | "parkinsons" | "intensity_range"; 

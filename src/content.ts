@@ -8,12 +8,10 @@ import { SimulationFactory } from "./models/SimulationFactory";
 const overlayManager: OverlayManager  = new OverlayManager();
 const simulationFactory: SimulationFactory = new SimulationFactory(overlayManager);
 const simulationController: SimulationController = new SimulationController(simulationFactory);
-
+let isActive = false;
 chrome.runtime.onMessage.addListener((object, sender, response) => {
-    console.log('object', object);
     const { disability, value } = object as Message;
     console.log('listening, to ', disability, value);
-    let isActive = false;
 
     switch(disability) {
         case "blackOverlay":
@@ -23,9 +21,19 @@ chrome.runtime.onMessage.addListener((object, sender, response) => {
             orangeColour();
             break;
         case "glaucoma":
-            simulationController.activate("glaucoma");
-            simulationController.deactivate();
-        break;
+            if(isActive) {
+                simulationController.deactivate();
+                isActive = false;
+                console.log('glaucoma isactive: ', isActive);
+            } else {
+                simulationController.activate("glaucoma");
+                isActive = true;
+                console.log('glaucoma inactive: ', isActive);
+            }
+
+            
+            // simulationController.deactivate();
+            break;
         case "visual-impaired":
             //  add slider info...-> 
             if(isActive)  {
@@ -35,15 +43,22 @@ chrome.runtime.onMessage.addListener((object, sender, response) => {
                 simulationController.activate("visual-impaired");
                 isActive = true;
             }
-        break;
+            break;
         case "cataract": 
             console.log("de nieuwe value is: " , value);
             if(!value) return;
             editIntensity(value);
-        break;
+            break;
         case "parkinsons": 
             simulationController.activate("parkinsons");
-        break;
+            break;
+        case "intensity_range":
+            simulationController.update(disability);
+            break;
+    // if value() then update
+    //     simulationController.activate(disability);
+    //     simulationController.deactivate();
+    //     simulationController.update(disability, value);
     }
 })
 

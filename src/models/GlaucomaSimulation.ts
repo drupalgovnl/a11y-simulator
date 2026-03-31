@@ -11,9 +11,7 @@ export class GlaucomaSimulation extends BaseSimulation  {
     }
     
     protected onActivate(): void {
-        console.log("creating overlay GlaucomaSimulation");
         this.OverlayManager.createOverlay(this.OverlayName);
-        console.log("applying GlaucomaSimulation effect");
         this.OverlayManager.applyGlaucomaEffect(this.OverlayName);
     }
 

@@ -1,38 +1,44 @@
 export class OverlayManager {
+ 
     public createOverlay(id: string):void { 
         let overlay = document.getElementById(id);
 
+        console.log('creating', id);
+
         if (!overlay) {
+            console.log('creating div', id);
             overlay = document.createElement('div');
             overlay.id = id;
+            overlay.className = id;
             document.body.appendChild(overlay);
         }
     }
 
     public removeOverlay(id:string):void {
-        const overlay = document.getElementById(id);
+        let overlay = document.getElementById(id);
         if(!overlay) return;
         console.log('removeOverlay', overlay, id)
         overlay.parentNode?.removeChild(overlay);
     }
 
     public applyGlaucomaEffect(id:string): void {
-        const overlay = document.getElementById(id);
+        let overlay = document.getElementById(id);
 
         if(!overlay) return;
 
         Object.assign(overlay.style, {
-        position: "fixed",
-        inset: "0",
-        pointerEvents: "none",
-        zIndex: "999999",
-        background:
-            "radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.85) 100%)"
+            position: "fixed",
+            inset: "0",
+            pointerEvents: "none",
+            zIndex: "99",
+            background:
+                "radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.85) 100%)"
         });
+
+        document.body.appendChild(overlay);
     }
 
     public applyVisualImpairmentEffect(id: string):void {
-        console.log('lets add some style to....' +  id);
         let overlay = document.getElementById(id);
 
         if(!overlay) return;
@@ -50,6 +56,38 @@ export class OverlayManager {
             display: 'block'
         });
         document.body.appendChild(overlay);
+    }
+    public updateVisualImparedEffect(id: string, value: string) {
+        let overlay = document.getElementById(id); 
+        console.log("updateVisualImparedEffect", overlay, value);
+        console.log(!overlay);
+        if(!overlay) return;
+        console.log('test123321', `blur(${value}px)`); 
+        Object.assign(overlay.style, {
+            backdropFilter: `blur(${value}px)`
+        });
+
+        document.body.appendChild(overlay);
+    }
+
+    public applyCataractEffect(id: string) {
+        // TODO make function for the overlay check + append tochild of body. used everywhere.
+        let overlay = document.getElementById(id);
+
+        if(!overlay) return;
+
+        Object.assign(overlay.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',        // Page keeps working, otherwise overlay prefents this.
+            background: 'rgba(255,255,255,0.2)', 
+            backdropFilter: 'blur(2px)',
+            zIndex: '100',
+            display: 'block'
+        });
     }
 
     public applyTremorEffect(id: string) {
@@ -110,5 +148,5 @@ export class OverlayManager {
         requestAnimationFrame(animate);
     }
 
-    // add the other effects that changes the overlay.
+   
 }
