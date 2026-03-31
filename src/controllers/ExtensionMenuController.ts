@@ -1,4 +1,4 @@
-import { Message } from "../models/Types";
+import { Message } from "../models/types";
 import { MessagingService } from "../services/MessagingService";
 
 export class ExtensionMenuController {
@@ -30,5 +30,30 @@ export class ExtensionMenuController {
     public editIntensity(message: Message): void {
         console.log('extensionMenuController editIntensity : ', message.value);
         this.MessagingService.sendMessage(message);
+    }
+
+    public activateDyslexiaSwitchChars(message: Message) {
+        console.log("switch characters dyslexia")
+        this.MessagingService.sendMessage(message);
+    }
+
+    public switchWords(message: Message) {
+        this.MessagingService.sendMessage(message);
+        console.log("switch words dyslexia")
+    }
+
+    public activateMirror(message: Message) {
+        this.MessagingService.sendMessage(message);
+        console.log("switch cmirror dyslexia")
+    }
+
+    public activateSpaces(message: Message) {
+        this.MessagingService.sendMessage(message);
+        console.log("activate spaces dyslexia")
+    }
+
+    public activateBlackOverlay(message: Message) {
+        this.MessagingService.sendMessage(message);
+        console.log("activate black overlay")
     }
 }

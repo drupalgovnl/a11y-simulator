@@ -117,6 +117,7 @@ export class OverlayManager {
             width="16" height="16" viewBox="0 0 16 16"><polygon points="0,0 0,12 3,9 6,15 8,14 5,8 9,8" 
             fill="black" stroke="white" stroke-width="1"/></svg>`;
         const encSvg = encodeURIComponent(svg);
+
         const fakeCursor = document.createElement('div');
         Object.assign(fakeCursor.style,{
             width:"16px",

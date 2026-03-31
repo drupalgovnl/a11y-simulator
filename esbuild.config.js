@@ -3,7 +3,7 @@ const esbuild = require("esbuild");
 esbuild.build({
     entryPoints: [
         "src/EventListeners.ts",
-        "src/Content.ts",
+        "src/content.ts",
     ],
     bundle: true,
     outdir: "dist",

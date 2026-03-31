@@ -3,9 +3,10 @@ import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 import { CataractSimulation } from "./CataractSimulation";
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
 import { GlaucomaSimulation } from "./GlaucomaSimulation";
-import { Disability } from "./Types";
+import { Disability } from "./types";
 import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
 import { ParkinsonsSimulation } from "./ParkinsonsSimulation";
+import {BlackOverlaySimulation} from "./BlackOverlaySimulation";
 
 export class SimulationFactory {
     private overlayManager: OverlayManager;
@@ -25,10 +26,10 @@ export class SimulationFactory {
                 return new VisualImpairedSimulation(this.overlayManager);
             case "parkinsons":
                 return new ParkinsonsSimulation(this.overlayManager);
-        
+            case "blackOverlay":
+                return new BlackOverlaySimulation(this.overlayManager);
             default:
             throw new Error(`There is no simulation of this type ${type}`);
-            
         }
     }
 

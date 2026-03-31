@@ -6,16 +6,37 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <main class="extension-menu">
-        <h1 class="title"> A11y Simulator</h1>
+<main class="extension-menu">
+    <h1 class="title"> A11y Simulator</h1>
+    <div class="buttons">
+        <button id="orange-colour">
+            Orange Colour
+        </button>
+        <button id="blackOverlay">
+            Black Overlay
+        </button>
         <section>
-        <div class="buttons">
-            <button id="orange-colour">
-                Orange Colour
-            </button>
-            <button id="black-overlay">
-                Black Overlay
-            </button>
+            <h3>Dyslexia</h3>
+            <div class="dyslexia">
+                <div class="check-option">
+                    <input type="checkbox" id="mirroring" name="mirroring"/>
+                    <label for="mirroring">Mirroring</label>
+                </div>
+                <div class="check-option">
+                    <input type="checkbox" id="spaces" name="spaces"/>
+                    <label for="spaces">Spaces</label>
+                </div>
+
+                <div class="check-option">
+                    <input type="checkbox" id="switching" name="switching"/>
+                    <label for="switching">Switching</label>
+                </div>
+
+                <div class="check-option">
+                    <input type="checkbox" id="word-order" name="word-order"/>
+                    <label for="word-order">Word Order</label>
+                </div>
+            </div>
         </section>
         <section>
             <p> Visual impairment</p>
@@ -32,8 +53,8 @@
             <button class="buttons">ADHD</button>
             <button class="buttons" id="button-tremor">Tremor</button>
         </section>
-        </div>
-    </main>
-    <script src="dist/EventListeners.js"></script>
+    </div>
+</main>
+<script src="dist/EventListeners.js"></script>
 </body>
 </html>

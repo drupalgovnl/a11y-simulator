@@ -1,11 +1,15 @@
 import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 import { SimulationFactory } from "../models/SimulationFactory";
-import { Disability } from "../models/Types";
+import { Disability } from "../models/types";
 
 export class SimulationController {
     private SimulationFactory: SimulationFactory;
-    private ActivateSimulation: IDisabilitySimulation | null = null;
-    private test: Record<Disability, SimulationFactory | null> = {
+    private ActiveSimulations: Record<Disability, IDisabilitySimulation | null> = {
+        "toggle-intensity-range": null,
+        "mirrorFunctionality": null,
+        "orderFunctionality": null,
+        "spaces": null,
+        "switching": null,
         "glaucoma": null,
         "cataract": null,
         "visual-impaired": null,
@@ -19,31 +23,33 @@ export class SimulationController {
         this.SimulationFactory = simulationFactory;
     }
 
-    public activate(type:Disability): void {
-        this.ActivateSimulation = this.SimulationFactory.create(type)
-        if(!this.test.parkinsons) {
-            
-        }
-        this.ActivateSimulation.activate();
-    }
-
-    public deactivate(): void {
-        if(!this.ActivateSimulation) {
-            console.log("inactive test123");
+    public check(disability: Disability) {
+        if(!this.ActiveSimulations[disability]) {
+            this.activate(disability);
         } else {
-            console.log("active test123");
-            this.ActivateSimulation.deactivate();
-            this.ActivateSimulation = null;    
+            this.deactivate(disability);
         }
     }
 
-    public update(value:string): void {
-        // moet een for loop worden voor elke actieve simulatie.
-        if(!this.ActivateSimulation) {
-            console.log("inactive test123");
-        } else {
-            console.log("active test123");
-            this.ActivateSimulation.update(value);
+    //  first deactivates the current activation if active. then activates the new one.
+    public activate(disability: Disability): void {
+        const activeDisability: IDisabilitySimulation = this.SimulationFactory.create(disability);
+        this.ActiveSimulations[disability] = activeDisability;
+        activeDisability.onActivate();
+    }
+
+    //  resets current simulation
+    public deactivate(disability: Disability): void {
+        const activeDisability: IDisabilitySimulation | null = this.ActiveSimulations[disability];
+
+        if(activeDisability) {
+            activeDisability.onDeactivate();
+            this.ActiveSimulations[disability] = null;
         }
     }
+
+    public change(value: string) {
+
+    }
+
 }

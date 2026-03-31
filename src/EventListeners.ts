@@ -1,4 +1,4 @@
-import {CreateEventListenerProps, Message} from "./models/Types";
+import {CreateEventListenerProps, Message} from "./models/types";
 import { ExtensionMenuController } from "./controllers/ExtensionMenuController";
 import { MessagingService } from "./services/MessagingService";
 
@@ -38,6 +38,8 @@ function createEventListener(props: CreateEventListenerProps) {
                 break;
             case "intensity_range":
                 extensionMenuController.editIntensity(message);
+            case "blackOverlay":
+                extensionMenuController.activateBlackOverlay(message);
                 break;
             default:
                 return;
@@ -45,10 +47,15 @@ function createEventListener(props: CreateEventListenerProps) {
     });
 }
 
-createEventListener({elementId: "black-overlay", eventName: "click", disability: "blackOverlay"});
+createEventListener({elementId: "blackOverlay", eventName: "click", disability: "blackOverlay"});
 createEventListener({elementId: "orange-colour", eventName: "click", disability: "orangeColour"});
 createEventListener({elementId: "button-glaucoma", eventName: "click", disability: "glaucoma"});
 createEventListener({elementId: "button-visually-impaired", eventName: "click", disability: "visual-impaired"});
 createEventListener({elementId: "button-cataract", eventName: "click", disability: "cataract"});
 createEventListener({elementId: "button-tremor", eventName: "click", disability: "parkinsons"})
 createEventListener({elementId: "intensity-range", eventName: "input", disability: "intensity_range"}); 
+createEventListener({elementId: "mirroring", eventName: "change", disability: "mirrorFunctionality"});
+createEventListener({elementId: "spaces", eventName: "change", disability: "spaces"});
+createEventListener({elementId: "switching", eventName: "change", disability: "switching"});
+createEventListener({elementId: "word-order", eventName: "change", disability: "orderFunctionality"});
+// createEventListener({elementId: "intensity-range", eventName: "input", disability: "toggle-intensity-range"}); @TODO work make sure to add the slider for all disabilities.

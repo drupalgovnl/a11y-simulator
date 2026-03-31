@@ -1,13 +1,12 @@
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
-import { BaseSimulation } from "./BaseSimulation";
+import {IDisabilitySimulation} from "../interfaces/IDisabilitySimulation";
 
-export class VisualImpairedSimulation extends BaseSimulation {
+export class VisualImpairedSimulation implements IDisabilitySimulation {
     private OverlayManager: OverlayManager;
     private OverlayName: string = "visual-impaired" 
 
     constructor(overlayManager: OverlayManager) 
     {
-        super();
         this.OverlayManager = overlayManager;
     }
 
