@@ -187,9 +187,9 @@ export class OverlayManager {
         const style = document.createElement("style");
         style.innerHTML = `
         .no-cursor {
-        cursor: none !important;
-            }
-            `;
+            cursor: none !important;
+        }
+        `;
 
         document.head.appendChild(style);
 
@@ -212,6 +212,12 @@ export class OverlayManager {
             top: "0"
         });
 
+        let links = document.querySelectorAll('a');
+        links.forEach((linkItem) => {
+            console.log('resetting all the linksss >:D', linkItem);
+            linkItem.style.setProperty('cursor', 'none');
+        })
+           
         document.body.appendChild(fakeCursor);
 
         const Hz = 4;
