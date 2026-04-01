@@ -21,8 +21,6 @@ export type Disability =
     | "glaucoma"
     | "cataract"
     | "visual-impaired"
-    | "blackOverlay"
-    | "orangeColour"
     | "parkinsons"
     | "toggle-intensity-range"
     | "intensity_range";

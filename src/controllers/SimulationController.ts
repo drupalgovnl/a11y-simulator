@@ -9,8 +9,6 @@ export class SimulationController {
         "glaucoma": null,
         "cataract": null,
         "visual-impaired": null,
-        "blackOverlay": null,
-        "orangeColour": null,
         "parkinsons": null,
         dyslexiaMirrorFunctionality: null,
         dyslexiaOrderFunctionality: null,

@@ -36,9 +36,6 @@ function createEventListener(props: CreateEventListenerProps) {
             case "intensity_range":
                 extensionMenuController.editIntensity(message);
                 break;
-            case "blackOverlay":
-                extensionMenuController.activateBlackOverlay(message);
-                break;
             case "resetSim":
                 document.querySelectorAll("input[type='checkbox']").forEach(cb => {
                     const checkbox: HTMLInputElement = cb as HTMLInputElement;
