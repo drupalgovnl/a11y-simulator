@@ -1,4 +1,4 @@
-import { Message } from "../models/Types";
+import { Message } from "../models/types";
 import Tab = chrome.tabs.Tab;
 
 export class MessagingService {

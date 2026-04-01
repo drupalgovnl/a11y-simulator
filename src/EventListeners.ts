@@ -19,9 +19,6 @@ function createEventListener(props: CreateEventListenerProps) {
         const target = event.target as HTMLInputElement;
         console.log('inside addeventListener the target is: ', target);
         const message: Message = {disability, value: target.value};
-        // is active or not ? 
-
-        // maybe a aray with disability and active status, => if same disability then active is switched, otherwise its active. -> 
        
         switch (disability) {
             case "glaucoma":
@@ -38,6 +35,7 @@ function createEventListener(props: CreateEventListenerProps) {
                 break;
             case "intensity_range":
                 extensionMenuController.editIntensity(message);
+                break;
             case "blackOverlay":
                 extensionMenuController.activateBlackOverlay(message);
                 break;
@@ -51,19 +49,15 @@ function createEventListener(props: CreateEventListenerProps) {
                 extensionMenuController.reset(message);
                 break;
             case "dyslexiaOrderFunctionality":
-                console.log("wow");
                 extensionMenuController.switchWords(message);
                 break;
             case "dyslexiaMirrorFunctionality":
-                console.log("wow");
                 extensionMenuController.activateMirror(message);
                 break;
             case "dyslexiaSwitching":
-                console.log("wow");
                 extensionMenuController.activateDyslexiaSwitchChars(message);
                 break;
             case "dyslexiaSpaces":
-                console.log("wow");
                 extensionMenuController.activateSpaces(message);
                 break;
             default:

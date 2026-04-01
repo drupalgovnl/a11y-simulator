@@ -34,10 +34,13 @@
     }
 }
 
+.neuro-title {
+    margin: 0;
+}
+
 .dyslexia {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
 
     label {
         font-weight: 600;
@@ -45,6 +48,22 @@
 
     input {
         cursor: pointer;
+    }
+
+
+    .dyslexia-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-bottom: 1rem;
+
+
+        .check-option {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            cursor: pointer;
+        }
     }
 }
 

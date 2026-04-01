@@ -1,6 +1,6 @@
-import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
-import { SimulationFactory } from "../models/SimulationFactory";
-import { Disability, Message } from "../models/types";
+import {IDisabilitySimulation} from "../interfaces/IDisabilitySimulation";
+import {SimulationFactory} from "../models/SimulationFactory";
+import {Disability, Message} from "../models/types";
 
 export class SimulationController {
     private SimulationFactory: SimulationFactory;
@@ -19,21 +19,22 @@ export class SimulationController {
         "intensity_range": null
     }
 
-    constructor(simulationFactory: SimulationFactory){
+    constructor(simulationFactory: SimulationFactory) {
         this.SimulationFactory = simulationFactory;
     }
 
     public check(message: Message) {
         console.log("check message", message);
-        if(message.disability === "intensity_range") {
-            if(!message.value) return;
-            console.log('update the message');
+        const disability: Disability = message.disability as Disability;
+
+        if (disability === "intensity_range") {
+            if (!message.value) return;
             this.update(message.value);
         } else {
-            if(!this.activeSimulations[message.disability]) {
-                this.activate(message.disability);
+            if (!this.activeSimulations[disability]) {
+                this.activate(disability)
             } else {
-                this.deactivate(message.disability);
+                this.deactivate(disability)
             }
         }
     }
@@ -42,7 +43,7 @@ export class SimulationController {
     public activate(disability: Disability): void {
         const activeDisability: IDisabilitySimulation | undefined = this.SimulationFactory.create(disability);
 
-        if(activeDisability) {
+        if (activeDisability) {
             this.activeSimulations[disability] = activeDisability;
             activeDisability.onActivate();
         }
@@ -52,7 +53,7 @@ export class SimulationController {
     public deactivate(disability: Disability): void {
         const activeDisability: IDisabilitySimulation | null = this.activeSimulations[disability];
 
-        if(activeDisability) {
+        if (activeDisability) {
             activeDisability.onDeactivate();
             this.activeSimulations[disability] = null;
         }
@@ -62,7 +63,7 @@ export class SimulationController {
     public async update(value: string) {
         for (const [disability, simulation] of Object.entries(this.activeSimulations)) {
             // if(!simulation) continue;
-            if(simulation) {
+            if (simulation) {
                 console.log('disability that is going to be updated', disability, simulation);
                 simulation.onUpdate(value);
             }
