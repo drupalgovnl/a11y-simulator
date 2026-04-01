@@ -48,7 +48,7 @@ export class ExtensionMenuController {
 
     public activateMirror(message: Message) {
         this.MessagingService.sendMessage(message);
-        console.log("switch cmirror dyslexia")
+        console.log("switch mirror dyslexia")
     }
 
     public activateSpaces(message: Message) {

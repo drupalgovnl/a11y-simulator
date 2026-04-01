@@ -6,7 +6,6 @@ import { GlaucomaSimulation } from "./GlaucomaSimulation";
 import {Disability, Reset} from "./types";
 import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
 import { ParkinsonsSimulation } from "./ParkinsonsSimulation";
-import {BlackOverlaySimulation} from "./BlackOverlaySimulation";
 import {DyslexiaMirrorFunctionality} from "./dyslexia/DyslexiaMirrorFunctionality";
 import {DyslexiaSpacesFunctionality} from "./dyslexia/DyslexiaSpacesFunctionality";
 import {DyslexiaSwitchFunctionality} from "./dyslexia/DyslexiaSwitchFunctionality";
@@ -30,8 +29,6 @@ export class SimulationFactory {
                 return new VisualImpairedSimulation(this.overlayManager);
             case "parkinsons":
                 return new ParkinsonsSimulation(this.overlayManager);
-            case "blackOverlay":
-                return new BlackOverlaySimulation(this.overlayManager);
             case "dyslexiaMirrorFunctionality":
                 return new DyslexiaMirrorFunctionality();
             case "dyslexiaSpaces":
