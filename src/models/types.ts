@@ -24,7 +24,8 @@ export type Disability =
     | "blackOverlay"
     | "orangeColour"
     | "parkinsons"
-    | "toggle-intensity-range";
+    | "toggle-intensity-range"
+    | "intensity_range";
 
 export type DyslexiaTypes =
     | "dyslexiaMirrorFunctionality"

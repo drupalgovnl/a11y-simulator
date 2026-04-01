@@ -15,13 +15,14 @@ export class CataractSimulation implements IDisabilitySimulation {
 
     public onActivate(): void {
         this.OverlayManager.createOverlay(this.OverlayName);
+        this.OverlayManager.applyCataractEffect(this.OverlayName);
     }
 
     public onDeactivate(): void {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
     
-    public onUpdate(value: string): void {
-        throw new Error("Method not implemented.");
+    public async onUpdate(value: string): Promise<void> {
+       await this.OverlayManager.updateCataractEffect(this.OverlayName, value);
     }
 }

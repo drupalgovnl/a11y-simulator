@@ -36,8 +36,9 @@ function createEventListener(props: CreateEventListenerProps) {
             case "parkinsons":
                 extensionMenuController.activateParkinsons(message);
                 break;
+            case "intensity_range":
+                extensionMenuController.editIntensity(message);
             case "blackOverlay":
-                console.log("YEAH")
                 extensionMenuController.activateBlackOverlay(message);
                 break;
             case "resetSim":
@@ -80,4 +81,6 @@ createEventListener({elementId: "spaces", eventName: "change", disability: "dysl
 createEventListener({elementId: "switching", eventName: "change", disability: "dyslexiaSwitching"});
 createEventListener({elementId: "word-order", eventName: "change", disability: "dyslexiaOrderFunctionality"});
 createEventListener({elementId: "resetSim", eventName: "click", disability: "resetSim"});
-// createEventListener({elementId: "intensity-range", eventName: "input", disability: "toggle-intensity-range"}); @TODO work make sure to add the slider for all disabilities.
+createEventListener({elementId: "button-cataract", eventName: "click", disability: "cataract"});
+createEventListener({elementId: "button-tremor", eventName: "click", disability: "parkinsons"})
+createEventListener({elementId: "intensity-range", eventName: "input", disability: "intensity_range"});

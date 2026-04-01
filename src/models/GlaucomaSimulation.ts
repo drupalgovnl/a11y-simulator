@@ -1,5 +1,5 @@
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
-import {IDisabilitySimulation} from "../interfaces/IDisabilitySimulation";
+import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 
 export class GlaucomaSimulation implements IDisabilitySimulation  {
     private OverlayManager: OverlayManager;
@@ -9,14 +9,9 @@ export class GlaucomaSimulation implements IDisabilitySimulation  {
         this.OverlayManager = overlayManager;
     }
 
-    isActive(): boolean {
-        throw new Error("Method not implemented.");
-    }
-
     public onActivate(): void {
         console.log("creating overlay GlaucomaSimulation");
         this.OverlayManager.createOverlay(this.OverlayName);
-        console.log("applying GlaucomaSimulation effect");
         this.OverlayManager.applyGlaucomaEffect(this.OverlayName);
     }
 
@@ -24,7 +19,7 @@ export class GlaucomaSimulation implements IDisabilitySimulation  {
         this.OverlayManager.removeOverlay(this.OverlayName);
     }
 
-    public onUpdate(value: string): void {
-        throw new Error("Method not implemented.");
+    public async onUpdate(value: string): Promise<void> {
+        await this.OverlayManager.updateGlaucomaEffect(this.OverlayName, value)
     }
 }

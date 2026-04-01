@@ -1,6 +1,6 @@
 import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 import { SimulationFactory } from "../models/SimulationFactory";
-import { Disability } from "../models/types";
+import { Disability, Message } from "../models/types";
 
 export class SimulationController {
     private SimulationFactory: SimulationFactory;
@@ -15,18 +15,26 @@ export class SimulationController {
         dyslexiaMirrorFunctionality: null,
         dyslexiaOrderFunctionality: null,
         dyslexiaSpaces: null,
-        dyslexiaSwitching: null
+        dyslexiaSwitching: null,
+        "intensity_range": null
     }
 
     constructor(simulationFactory: SimulationFactory){
         this.SimulationFactory = simulationFactory;
     }
 
-    public check(disability: Disability) {
-        if(!this.activeSimulations[disability]) {
-            this.activate(disability);
+    public check(message: Message) {
+        console.log("check message", message);
+        if(message.disability === "intensity_range") {
+            if(!message.value) return;
+            console.log('update the message');
+            this.update(message.value);
         } else {
-            this.deactivate(disability);
+            if(!this.activeSimulations[message.disability]) {
+                this.activate(message.disability);
+            } else {
+                this.deactivate(message.disability);
+            }
         }
     }
 
@@ -50,7 +58,16 @@ export class SimulationController {
         }
     }
 
-    public change(value: string) {
+    // refactor
+    public async update(value: string) {
+        for (const [disability, simulation] of Object.entries(this.activeSimulations)) {
+            // if(!simulation) continue;
+            if(simulation) {
+                console.log('disability that is going to be updated', disability, simulation);
+                simulation.onUpdate(value);
+            }
+
+        }
     }
 
 }

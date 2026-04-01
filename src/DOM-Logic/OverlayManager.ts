@@ -2,37 +2,111 @@ export class OverlayManager {
     public createOverlay(id: string):void { 
         let overlay = document.getElementById(id);
 
+        console.log('creating', id);
+
         if (!overlay) {
+            console.log('creating div', id);
             overlay = document.createElement('div');
             overlay.id = id;
+            overlay.className = id;
             document.body.appendChild(overlay);
         }
     }
 
     public removeOverlay(id:string):void {
-        const overlay = document.getElementById(id);
+        let overlay = document.getElementById(id);
         if(!overlay) return;
         console.log('removeOverlay', overlay, id)
         overlay.parentNode?.removeChild(overlay);
     }
 
     public applyGlaucomaEffect(id:string): void {
-        const overlay = document.getElementById(id);
+        let overlay = document.getElementById(id);
+        const base = this.createRandomRadialGradient();
+        const noise1 = this.generateNoiseLayer();
+        const noise2 = this.generateNoiseLayer();
 
         if(!overlay) return;
 
         Object.assign(overlay.style, {
-        position: "fixed",
-        inset: "0",
-        pointerEvents: "none",
-        zIndex: "999999",
-        background:
-            "radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.85) 100%)"
+            position: "fixed",
+            inset: "0",
+            pointerEvents: "none",
+            zIndex: "99",
+            background: `${base}, ${noise1}, ${noise2}`
         });
+
+
+        // Object.assign(overlay.style, {
+        //     position: "fixed",
+        //     inset: "0",
+        //     pointerEvents: "none",
+        //     zIndex: "99",
+        //     // background:
+        //     //     "radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.85) 100%)"
+        //     background: this.createRandomRadialGradient()
+        // });
+
+        document.body.appendChild(overlay);
+    }
+    
+    private generateNoiseLayer(): string {
+        const x = this.random(0, 100);
+        const y = this.random(0, 100);
+        const size = this.random(10, 30);
+        const opacity = this.random(0.1, 0.3);
+
+        return `
+            radial-gradient(
+                circle at ${x}% ${y}%,
+                rgba(0,0,0,${opacity}) 0%,
+                rgba(0,0,0,0) ${size}%
+            )
+        `;
     }
 
-    public applyVisualImpairmentEffect(id: string):void {
-        console.log('lets add some style to....' +  id);
+    private random(min: number, max: number):number {
+        return Math.random() *  ( max - min ) + min;
+    }
+
+    private createRandomRadialGradient(): string {
+        const centerX = this.random(30, 70); // %
+        const centerY = this.random(30, 70); // %
+
+        const inner = this.random(10, 25);
+        const mid = inner + this.random(10, 25);
+        const outer = mid + this.random(20, 40);
+
+        const opacityMid = this.random(0.3, 0.6);
+        const opacityOuter = this.random(0.7, 0.95);
+
+        return `
+            radial-gradient(
+                ellipse at ${centerX}% ${centerY}%,
+                rgba(0,0,0,0) ${inner}%,
+                rgba(0,0,0,${opacityMid}) ${mid}%,
+                rgba(0,0,0,${opacityOuter}) ${outer}%
+            )
+        `;
+    }
+
+    public async updateGlaucomaEffect(id: string, value: string):Promise<void> {
+        let overlay = document.getElementById(id); 
+        if(!overlay) return;
+        // "1 -> 100"
+        let firstPercentage: number = 20 + parseInt(value);
+        let secondPercentage: number = 45 + parseInt(value);
+        let thirdPercentage: number = 100 + parseInt(value);
+        // how do i update the circle gradient with the %... with slider.->
+        Object.assign(overlay.style, {
+             background:
+                `radial-gradient(circle, rgba(0,0,0,0) ${firstPercentage}%, rgba(0,0,0,0.4) ${secondPercentage}%, rgba(0,0,0,0.85) ${thirdPercentage}%)`
+        });
+
+        document.appendChild(overlay);
+    }
+
+    public applyVisualImpairmentEffect(id: string): void {
         let overlay = document.getElementById(id);
 
         if(!overlay) return;
@@ -52,7 +126,52 @@ export class OverlayManager {
         document.body.appendChild(overlay);
     }
 
-    public applyTremorEffect(id: string) {
+    public async updateVisualImparedEffect(id: string, value: string): Promise<void> {
+        let overlay = document.getElementById(id); 
+        if(!overlay) return;
+        Object.assign(overlay.style, {
+            backdropFilter: `blur(${value}px)`
+        });
+
+        document.body.appendChild(overlay);
+    }
+
+    public applyCataractEffect(id: string) {
+        // TODO make function for the overlay check + append tochild of body. used everywhere.
+        let overlay = document.getElementById(id);
+
+        if(!overlay) return;
+
+        Object.assign(overlay.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',        // Page keeps working, otherwise overlay prefents this.
+            // background: 'rgba(255,255,255,0.2)', 
+            background: 'rgba(255,255,255,0.2)', 
+            backdropFilter: 'blur(2px)',
+            zIndex: '100',
+            display: 'block'
+        });
+    }
+
+    public async updateCataractEffect(id: string, value: string):Promise<void> {
+        let overlay = document.getElementById(id); 
+        const sliderValue = parseInt(value); // 0 - 50
+
+        const opacity = 0.2 + (sliderValue / 50) * (0.6 - 0.2);
+        if(!overlay) return;
+
+        Object.assign(overlay.style, {
+            background: `rgba(255,255,255,${opacity})`, 
+        });
+
+        document.body.appendChild(overlay);
+    }
+
+    public applyTremorEffect(id: string):void {
         console.log("tremor");
         let mouseX = 0;
         let mouseY = 0;
@@ -109,7 +228,5 @@ export class OverlayManager {
             requestAnimationFrame(animate);
         }
         requestAnimationFrame(animate);
-    }
-
-    // add the other effects that changes the overlay.
+    }   
 }
