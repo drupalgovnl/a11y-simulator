@@ -10,7 +10,6 @@ export class GlaucomaSimulation implements IDisabilitySimulation  {
     }
 
     public onActivate(): void {
-        console.log("creating overlay GlaucomaSimulation");
         this.OverlayManager.createOverlay(this.OverlayName);
         this.OverlayManager.applyGlaucomaEffect(this.OverlayName);
     }

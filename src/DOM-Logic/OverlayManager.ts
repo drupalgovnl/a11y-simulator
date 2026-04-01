@@ -2,10 +2,7 @@ export class OverlayManager {
     public createOverlay(id: string):void { 
         let overlay = document.getElementById(id);
 
-        console.log('creating', id);
-
         if (!overlay) {
-            console.log('creating div', id);
             overlay = document.createElement('div');
             overlay.id = id;
             overlay.className = id;
@@ -16,7 +13,6 @@ export class OverlayManager {
     public removeOverlay(id:string):void {
         let overlay = document.getElementById(id);
         if(!overlay) return;
-        console.log('removeOverlay', overlay, id)
         overlay.parentNode?.removeChild(overlay);
     }
 
@@ -35,17 +31,6 @@ export class OverlayManager {
             zIndex: "99",
             background: `${base}, ${noise1}, ${noise2}`
         });
-
-
-        // Object.assign(overlay.style, {
-        //     position: "fixed",
-        //     inset: "0",
-        //     pointerEvents: "none",
-        //     zIndex: "99",
-        //     // background:
-        //     //     "radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.85) 100%)"
-        //     background: this.createRandomRadialGradient()
-        // });
 
         document.body.appendChild(overlay);
     }
@@ -117,8 +102,7 @@ export class OverlayManager {
             left: '0',
             width: '100%',
             height: '100%',
-            pointerEvents: 'none',        // Page keeps working, otherwise overlay prefents this.
-            // background: 'rgba(255,255,255,0.2)', -> staar!
+            pointerEvents: 'none',       
             backdropFilter: 'blur(2px)',
             zIndex: '100',
             display: 'block'
@@ -137,7 +121,6 @@ export class OverlayManager {
     }
 
     public applyCataractEffect(id: string) {
-        // TODO make function for the overlay check + append tochild of body. used everywhere.
         let overlay = document.getElementById(id);
 
         if(!overlay) return;
@@ -148,8 +131,7 @@ export class OverlayManager {
             left: '0',
             width: '100%',
             height: '100%',
-            pointerEvents: 'none',        // Page keeps working, otherwise overlay prefents this.
-            // background: 'rgba(255,255,255,0.2)', 
+            pointerEvents: 'none',        
             background: 'rgba(255,255,255,0.2)', 
             backdropFilter: 'blur(2px)',
             zIndex: '100',
@@ -171,25 +153,22 @@ export class OverlayManager {
         document.body.appendChild(overlay);
     }
 
-    public applyTremorEffect(id: string):void {
-        console.log("tremor");
+    public async applyTremorEffect(id: string) : Promise<void> {
         let mouseX = 0;
         let mouseY = 0;
 
         document.addEventListener('mousemove', function(e) {
-            // console.log(`mousemove ${e.clientX} Y: ${e.clientY}`);
         mouseX = e.clientX;
         mouseY = e.clientY;
         });
 
-        // document.body.style.cursor = "none !important";
 
         const style = document.createElement("style");
         style.innerHTML = `
         .no-cursor {
-        cursor: none !important;
-            }
-            `;
+            cursor: none !important;
+        }
+        `;
 
         document.head.appendChild(style);
 
@@ -212,6 +191,11 @@ export class OverlayManager {
             top: "0"
         });
 
+        await this.curserToNone("a")
+        await this.curserToNone("button")
+        await this.curserToNone("span")
+        await this.curserToNone("input")
+           
         document.body.appendChild(fakeCursor);
 
         const Hz = 4;
@@ -229,4 +213,12 @@ export class OverlayManager {
         }
         requestAnimationFrame(animate);
     }   
+
+    private async curserToNone(elementName:string) {
+        const elements = document.querySelectorAll(elementName);
+
+        elements.forEach((element) => {
+            (element as HTMLElement).style.setProperty('cursor', 'none');
+        });
+    }
 }

@@ -3,7 +3,7 @@ import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 import { CataractSimulation } from "./CataractSimulation";
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
 import { GlaucomaSimulation } from "./GlaucomaSimulation";
-import {Disability, Reset} from "./types";
+import {Disability, Reset} from "./Types";
 import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
 import { ParkinsonsSimulation } from "./ParkinsonsSimulation";
 import {DyslexiaMirrorFunctionality} from "./dyslexia/DyslexiaMirrorFunctionality";
@@ -21,7 +21,6 @@ export class SimulationFactory {
     public create(type:Disability | Reset): IDisabilitySimulation | undefined {
         switch (type) {
             case "glaucoma":
-                console.log('creating glaucoma simulation object.');
                 return new GlaucomaSimulation(this.overlayManager);
             case "cataract":
                 return new CataractSimulation(this.overlayManager);
