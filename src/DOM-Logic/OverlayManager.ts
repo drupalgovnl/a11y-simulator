@@ -2,10 +2,8 @@ export class OverlayManager {
     public createOverlay(id: string):void { 
         let overlay = document.getElementById(id);
 
-        console.log('creating', id);
 
         if (!overlay) {
-            console.log('creating div', id);
             overlay = document.createElement('div');
             overlay.id = id;
             overlay.className = id;
@@ -16,7 +14,6 @@ export class OverlayManager {
     public removeOverlay(id:string):void {
         let overlay = document.getElementById(id);
         if(!overlay) return;
-        console.log('removeOverlay', overlay, id)
         overlay.parentNode?.removeChild(overlay);
     }
 
@@ -35,17 +32,6 @@ export class OverlayManager {
             zIndex: "99",
             background: `${base}, ${noise1}, ${noise2}`
         });
-
-
-        // Object.assign(overlay.style, {
-        //     position: "fixed",
-        //     inset: "0",
-        //     pointerEvents: "none",
-        //     zIndex: "99",
-        //     // background:
-        //     //     "radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,0,0,0.4) 45%, rgba(0,0,0,0.85) 100%)"
-        //     background: this.createRandomRadialGradient()
-        // });
 
         document.body.appendChild(overlay);
     }
@@ -172,17 +158,14 @@ export class OverlayManager {
     }
 
     public applyTremorEffect(id: string):void {
-        console.log("tremor");
         let mouseX = 0;
         let mouseY = 0;
 
         document.addEventListener('mousemove', function(e) {
-            // console.log(`mousemove ${e.clientX} Y: ${e.clientY}`);
         mouseX = e.clientX;
         mouseY = e.clientY;
         });
 
-        // document.body.style.cursor = "none !important";
 
         const style = document.createElement("style");
         style.innerHTML = `
@@ -214,7 +197,6 @@ export class OverlayManager {
 
         let links = document.querySelectorAll('a');
         links.forEach((linkItem) => {
-            console.log('resetting all the linksss >:D', linkItem);
             linkItem.style.setProperty('cursor', 'none');
         })
            

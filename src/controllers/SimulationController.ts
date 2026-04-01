@@ -1,6 +1,6 @@
 import {IDisabilitySimulation} from "../interfaces/IDisabilitySimulation";
 import {SimulationFactory} from "../models/SimulationFactory";
-import {Disability, Message} from "../models/types";
+import {Disability, Message} from "../models/Types";
 
 export class SimulationController {
     private SimulationFactory: SimulationFactory;
@@ -22,7 +22,6 @@ export class SimulationController {
     }
 
     public check(message: Message) {
-        console.log("check message", message);
         const disability: Disability = message.disability as Disability;
 
         if (disability === "intensity_range") {
@@ -62,7 +61,6 @@ export class SimulationController {
         for (const [disability, simulation] of Object.entries(this.activeSimulations)) {
             // if(!simulation) continue;
             if (simulation) {
-                console.log('disability that is going to be updated', disability, simulation);
                 simulation.onUpdate(value);
             }
 
