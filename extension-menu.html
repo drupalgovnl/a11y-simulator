@@ -6,17 +6,50 @@
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <main class="extension-menu">
-        <h1 class="title"> A11y Simulator</h1>
-        <div class="buttons">
-            <button id="orange-colour">
-                Orange Colour
-            </button>
-            <button id="black-overlay">
-                Black Overlay
-            </button>
-        </div>
-    </main>
-    <script src="dist/listeners.js"></script>
+<main class="extension-menu">
+    <h1 class="title"> A11y Simulator</h1>
+    <div class="buttons">
+        <button id="resetSim">
+            Reset
+        </button>
+        <section>
+            <h3> Visual impairment</h3>
+            <button class="buttons"  id="button-visually-impaired">Visually impaired</button>
+            <button class="buttons" id="button-glaucoma">Glaucoma</button>
+            <button class="buttons" id="button-cataract">Cataract</button>
+        </section>
+        <section>
+            <h3 class="neuro-title"> Neurological impairment</h3>
+            <div class="dyslexia">
+                <h4>Dyslexia</h4>
+                <div id="dyslexia-menu" class="dyslexia-menu">
+                    <div class="check-option">
+                        <input type="checkbox" id="mirroring" name="mirroring"/>
+                        <label for="mirroring">Mirroring</label>
+                    </div>
+                    <div class="check-option">
+                        <input type="checkbox" id="spaces" name="spaces"/>
+                        <label for="spaces">Spaces</label>
+                    </div>
+                    <div class="check-option">
+                        <input type="checkbox" id="switching" name="switching"/>
+                        <label for="switching">Switching</label>
+                    </div>
+
+                    <div class="check-option">
+                        <input type="checkbox" id="word-order" name="word-order"/>
+                        <label for="word-order">Word Order</label>
+                    </div>
+                </div>
+            </div>
+            <button class="buttons">ADHD</button>
+            <button class="buttons" id="button-tremor">Tremor</button>
+        </section>
+
+        <input type="range" min="0" max="50" value="2" class="intensity-slider" id="intensity-range">
+
+    </div>
+</main>
+<script src="dist/EventListeners.js"></script>
 </body>
 </html>
