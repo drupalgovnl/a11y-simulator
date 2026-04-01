@@ -1,10 +1,29 @@
 import {IDisabilitySimulation} from "../../interfaces/IDisabilitySimulation";
-import {determineChar, getTreeWalker} from "../../functions/dyslexia";
 import {DyslexiaSimulation} from "./DyslexiaSimulation";
 
 
 export class DyslexiaMirrorFunctionality extends DyslexiaSimulation implements IDisabilitySimulation {
     private mirrorDictionary: Record<string, string> = {};
+
+    determineChar(char: string): string {
+        // generates a number 0 or 1 whether option 1 or 2 should be triggered (=RANDOM)
+        const triggerTrue: boolean = this.shouldTrigger(2, 1);
+
+        switch(char) {
+            case "b":
+                return triggerTrue ? "d" : "p";
+            case "d":
+                return triggerTrue ? "b" : "p";
+            case "p":
+                return triggerTrue ? "d": "b";
+            case "m":
+                return "w";
+            case "w":
+                return "m";
+            default:
+                return char;
+        }
+    }
 
     onActivate(): void {
         let node;
@@ -23,7 +42,7 @@ export class DyslexiaMirrorFunctionality extends DyslexiaSimulation implements I
             for(const word of words) {
                 let currWord = "";
                 for (let char of word.split("")) {
-                    currWord += determineChar(char);
+                    currWord += this.determineChar(char);
                 }
                 newWords.push(currWord);
             }
@@ -52,7 +71,6 @@ export class DyslexiaMirrorFunctionality extends DyslexiaSimulation implements I
             }
         }
     }
-
 
 
     onUpdate(value: string): void {

@@ -28,17 +28,8 @@ export class ExtensionMenuController {
         this.MessagingService.sendMessage(message);
     }
 
-    public activateDyslexia(message: Message) {
-        const element: HTMLElement | null = document.getElementById('dyslexia-menu');
-
-        if(element) {
-            if(element.style.visibility === "hidden") {
-                element.style.visibility = "visible";
-                this.MessagingService.sendMessage(message);
-            } else {
-                element.style.visibility = "hidden";
-            }
-        }
+    public reset(message: Message) {
+        this.MessagingService.sendMessage(message);
     }
 
     public activateDyslexiaSwitchChars(message: Message) {

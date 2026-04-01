@@ -6,7 +6,6 @@ export class SimulationController {
     private SimulationFactory: SimulationFactory;
     private activeSimulations: Record<Disability, IDisabilitySimulation | null> = {
         "toggle-intensity-range": null,
-        dyslexia: null,
         "glaucoma": null,
         "cataract": null,
         "visual-impaired": null,
@@ -24,7 +23,6 @@ export class SimulationController {
     }
 
     public check(disability: Disability) {
-        console.log(disability);
         if(!this.activeSimulations[disability]) {
             this.activate(disability);
         } else {
@@ -34,9 +32,12 @@ export class SimulationController {
 
     //  first deactivates the current activation if active. then activates the new one.
     public activate(disability: Disability): void {
-        const activeDisability: IDisabilitySimulation = this.SimulationFactory.create(disability);
-        this.activeSimulations[disability] = activeDisability;
-        activeDisability.onActivate();
+        const activeDisability: IDisabilitySimulation | undefined = this.SimulationFactory.create(disability);
+
+        if(activeDisability) {
+            this.activeSimulations[disability] = activeDisability;
+            activeDisability.onActivate();
+        }
     }
 
     //  resets current simulation
@@ -50,7 +51,6 @@ export class SimulationController {
     }
 
     public change(value: string) {
-
     }
 
 }

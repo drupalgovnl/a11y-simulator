@@ -1,8 +1,12 @@
-import {IDisabilitySimulation} from "../../interfaces/IDisabilitySimulation";
+export class DyslexiaSimulation {
+    randomNumber(max: number): number {
+        return Math.floor(Math.random() * max);
+    }
 
-export class DyslexiaSimulation implements IDisabilitySimulation {
+    constructor() {}
 
-    constructor() {
+    shouldTrigger(max: number, chance: number): boolean {
+        return this.randomNumber(max) < chance;
     }
 
     getTreeWalker(): TreeWalker {
@@ -12,20 +16,4 @@ export class DyslexiaSimulation implements IDisabilitySimulation {
             null
         )
     }
-
-    onActivate(): void {
-        const dyslexiaMenu: HTMLElement | null = document.getElementById('dyslexia-menu');
-        console.log(dyslexiaMenu);
-        console.log("awdawdawdawdawdawd")
-    }
-
-    onDeactivate(): void {
-        const dyslexiaMenu: HTMLElement | null = document.getElementById('dyslexia-menu');
-        console.log("123123123")
-    }
-
-    onUpdate(value: string): void {
-        throw new Error("Method not implemented.");
-    }
-
 }

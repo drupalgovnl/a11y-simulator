@@ -3,11 +3,10 @@ import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
 import { CataractSimulation } from "./CataractSimulation";
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
 import { GlaucomaSimulation } from "./GlaucomaSimulation";
-import { Disability } from "./types";
+import {Disability, Reset} from "./types";
 import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
 import { ParkinsonsSimulation } from "./ParkinsonsSimulation";
 import {BlackOverlaySimulation} from "./BlackOverlaySimulation";
-import {DyslexiaSimulation} from "./dyslexia/DyslexiaSimulation";
 import {DyslexiaMirrorFunctionality} from "./dyslexia/DyslexiaMirrorFunctionality";
 import {DyslexiaSpacesFunctionality} from "./dyslexia/DyslexiaSpacesFunctionality";
 import {DyslexiaSwitchFunctionality} from "./dyslexia/DyslexiaSwitchFunctionality";
@@ -20,7 +19,7 @@ export class SimulationFactory {
         this.overlayManager = overlayManager;
     }
 
-    public create(type:Disability): IDisabilitySimulation {
+    public create(type:Disability | Reset): IDisabilitySimulation | undefined {
         switch (type) {
             case "glaucoma":
                 console.log('creating glaucoma simulation object.');
@@ -33,8 +32,6 @@ export class SimulationFactory {
                 return new ParkinsonsSimulation(this.overlayManager);
             case "blackOverlay":
                 return new BlackOverlaySimulation(this.overlayManager);
-            case "dyslexia":
-                return new DyslexiaSimulation();
             case "dyslexiaMirrorFunctionality":
                 return new DyslexiaMirrorFunctionality();
             case "dyslexiaSpaces":
@@ -43,7 +40,9 @@ export class SimulationFactory {
                 return new DyslexiaSwitchFunctionality();
             case "dyslexiaOrderFunctionality":
                 return new DyslexiaWordOrderFunctionality();
-
+            case "resetSim":
+                window.location.reload();
+                break;
             default:
             throw new Error(`There is no simulation of this type ${type}`);
         }

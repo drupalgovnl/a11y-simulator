@@ -8,11 +8,11 @@
 export type CreateEventListenerProps = {
     elementId: string;
     eventName: string;
-    disability: Disability;
+    disability: Disability | Reset;
 }
 
 export type Message = {
-    disability: Disability;
+    disability: Disability | Reset;
     value: string | null;
 }
 // export type MessageAction = "blackOverlay" | "redOverlay" | "orangeColour" | "toggle-button-visually-impaired" | "toggle-button-glaucoma" | "toggle-intensity-range";
@@ -24,13 +24,13 @@ export type Disability =
     | "blackOverlay"
     | "orangeColour"
     | "parkinsons"
-    | "dyslexia"
-    | "toggle-intensity-range"
-    ;
+    | "toggle-intensity-range";
 
 export type DyslexiaTypes =
     | "dyslexiaMirrorFunctionality"
     | "dyslexiaSpaces"
     | "dyslexiaSwitching"
-    | "dyslexiaOrderFunctionality"
+    | "dyslexiaOrderFunctionality";
+
+export type Reset = "resetSim";
 
