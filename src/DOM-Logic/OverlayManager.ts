@@ -191,12 +191,6 @@ export class OverlayManager {
             top: "0"
         });
 
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach((input) => {
-            console.log('inputs', input);
-            input.style.setProperty('cursor', 'none');
-        });
-
         await this.curserToNone("a")
         await this.curserToNone("button")
         await this.curserToNone("span")
