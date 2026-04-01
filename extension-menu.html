@@ -1,55 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>a11y simulator</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<main class="extension-menu">
-    <h1 class="title"> A11y Simulator</h1>
-    <div class="buttons">
-        <button id="resetSim">
-            Reset
-        </button>
-        <section>
-            <h3> Visual impairment</h3>
-            <button class="buttons"  id="button-visually-impaired">Visually impaired</button>
-            <button class="buttons" id="button-glaucoma">Glaucoma</button>
-            <button class="buttons" id="button-cataract">Cataract</button>
-        </section>
-        <section>
-            <h3 class="neuro-title"> Neurological impairment</h3>
-            <div class="dyslexia">
-                <h4>Dyslexia</h4>
-                <div id="dyslexia-menu" class="dyslexia-menu">
-                    <div class="check-option">
-                        <input type="checkbox" id="mirroring" name="mirroring"/>
-                        <label for="mirroring">Mirroring</label>
-                    </div>
-                    <div class="check-option">
-                        <input type="checkbox" id="spaces" name="spaces"/>
-                        <label for="spaces">Spaces</label>
-                    </div>
-                    <div class="check-option">
-                        <input type="checkbox" id="switching" name="switching"/>
-                        <label for="switching">Switching</label>
-                    </div>
 
-                    <div class="check-option">
-                        <input type="checkbox" id="word-order" name="word-order"/>
-                        <label for="word-order">Word Order</label>
+<body>
+    <main class="extension-menu">
+
+        <section class="header">
+            <img src="./img/A11Y-sim-icon-64.png"
+                alt="icon of a monitor that displays a heart with a checkmark inside it" />
+
+            <h1 class="title"> Accessibility Simulator</h1>
+        </section>
+
+        <div class="buttons">
+
+            <section class="visual">
+                <h3> Visual impairment</h3>
+                <div class="button-list">
+                    <button class="buttons" id="button-visually-impaired">Visually impaired</button>
+                    <button class="buttons" id="button-glaucoma">Glaucoma</button>
+                    <button class="buttons" id="button-cataract">Cataract</button>
+                </div>
+            </section>
+
+            <section class="cognitive">
+                <h3 class="neuro-title"> Neurological impairment</h3>
+
+                <div class="dyslexia sub-section">
+                    <h4 class="sub-section-title">Dyslexia</h4>
+
+                    <div id="dyslexia-menu" class="dyslexia-menu">
+                        <div class="check-option">
+                            <input type="checkbox" id="mirroring" name="mirroring" />
+                            <label for="mirroring">Mirroring</label>
+                        </div>
+                        <div class="check-option">
+                            <input type="checkbox" id="spaces" name="spaces" />
+                            <label for="spaces">Spaces</label>
+                        </div>
+                        <div class="check-option">
+                            <input type="checkbox" id="switching" name="switching" />
+                            <label for="switching">Switching</label>
+                        </div>
+
+                        <div class="check-option">
+                            <input type="checkbox" id="word-order" name="word-order" />
+                            <label for="word-order">Word Order</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <button class="buttons">ADHD</button>
-            <button class="buttons" id="button-tremor">Tremor</button>
-        </section>
+            </section>
 
-        <input type="range" min="0" max="50" value="0" class="intensity-slider" id="intensity-range">
+            <section class="motor">
+                <h3>Motor impairment</h3>
+                <button id="button-tremor">Tremor</button>
+            </section>
 
-    </div>
-</main>
-<script src="dist/EventListeners.js"></script>
+            <section class="settings">
+                <h3>Settings</h3>
+                <label for="intensity-range">Intensity</label>
+                <input type="range" min="0" max="50" value="0" class="intensity-slider" id="intensity-range">
+                <div class="end top-space">
+                    <button id="resetSim">Reset</button>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+    <script src="dist/EventListeners.js"></script>
 </body>
+
 </html>

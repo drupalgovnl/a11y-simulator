@@ -1,3 +1,15 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+ background-color: #eef7fc;
+}
+
+section {
+    width: 100%;
+}
+
 .extension-menu {
     display: flex;
     flex-direction: column;
@@ -7,6 +19,14 @@
     width: 15rem;
     height: 100%;
     padding: 1rem;
+
+    
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
 }
 
 .title {
@@ -14,28 +34,56 @@
     margin: 0;
 }
 
-.buttons {
+.button-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 1rem;
+}
 
+.buttons {
     button {
-        background-color: lightgray;
-        border: 2px solid darkgray;
-        border-radius: 0.75rem;
-        font-weight: 700;
-        font-size: 0.75rem;
-        padding: 0.5rem;
+        background-color: #bcdff0;
+        border: none;
+        /* border: 2px solid #8fcae7; */
+        /* border-radius: 0.75rem; */
+        font-weight: 400;
+        font-size: 1rem;
+        padding: 0.6rem;
         cursor: pointer;
     }
 
     button:hover {
-        background-color: darkgray;
+        background-color: #ddeff8;
     }
 }
 
-.neuro-title {
+#resetSim {
+    background-color: #ace4d3;
+}
+#resetSim:hover {
+    background-color: #d5f1e9;
+}
+
+/* .neuro-title {
     margin: 0;
+} */
+.sub-section {
+    margin-left: 1rem;
+}
+
+.sub-section-title {
+    margin: 0 0 0.5rem 0;
+}
+
+.end {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.top-space {
+    margin-top: 0.5rem;
 }
 
 .dyslexia {
@@ -43,20 +91,17 @@
     flex-direction: column;
 
     label {
-        font-weight: 600;
+        font-weight: 500;
     }
 
     input {
         cursor: pointer;
     }
 
-
     .dyslexia-menu {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        padding-bottom: 1rem;
-
 
         .check-option {
             display: flex;
@@ -65,21 +110,6 @@
             cursor: pointer;
         }
     }
-}
-
-
-.blackOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-
-    background: rgba(0,0,0,0.85);
-
-    z-index: 1000;
-
-    pointer-events: none;
 }
 
 .main {
