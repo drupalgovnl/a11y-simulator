@@ -2,7 +2,6 @@ export class OverlayManager {
     public createOverlay(id: string):void { 
         let overlay = document.getElementById(id);
 
-
         if (!overlay) {
             overlay = document.createElement('div');
             overlay.id = id;
@@ -103,8 +102,7 @@ export class OverlayManager {
             left: '0',
             width: '100%',
             height: '100%',
-            pointerEvents: 'none',        // Page keeps working, otherwise overlay prefents this.
-            // background: 'rgba(255,255,255,0.2)', -> staar!
+            pointerEvents: 'none',       
             backdropFilter: 'blur(2px)',
             zIndex: '100',
             display: 'block'
@@ -123,7 +121,6 @@ export class OverlayManager {
     }
 
     public applyCataractEffect(id: string) {
-        // TODO make function for the overlay check + append tochild of body. used everywhere.
         let overlay = document.getElementById(id);
 
         if(!overlay) return;
@@ -134,8 +131,7 @@ export class OverlayManager {
             left: '0',
             width: '100%',
             height: '100%',
-            pointerEvents: 'none',        // Page keeps working, otherwise overlay prefents this.
-            // background: 'rgba(255,255,255,0.2)', 
+            pointerEvents: 'none',        
             background: 'rgba(255,255,255,0.2)', 
             backdropFilter: 'blur(2px)',
             zIndex: '100',
@@ -228,7 +224,6 @@ export class OverlayManager {
         const elements = document.querySelectorAll(elementName);
 
         elements.forEach((element) => {
-            console.log(elementName, element);
             (element as HTMLElement).style.setProperty('cursor', 'none');
         });
     }
