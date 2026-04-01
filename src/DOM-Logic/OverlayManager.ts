@@ -157,7 +157,7 @@ export class OverlayManager {
         document.body.appendChild(overlay);
     }
 
-    public applyTremorEffect(id: string):void {
+    public async applyTremorEffect(id: string) : Promise<void> {
         let mouseX = 0;
         let mouseY = 0;
 
@@ -195,10 +195,16 @@ export class OverlayManager {
             top: "0"
         });
 
-        let links = document.querySelectorAll('a');
-        links.forEach((linkItem) => {
-            linkItem.style.setProperty('cursor', 'none');
-        })
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach((input) => {
+            console.log('inputs', input);
+            input.style.setProperty('cursor', 'none');
+        });
+
+        await this.curserToNone("a")
+        await this.curserToNone("button")
+        await this.curserToNone("span")
+        await this.curserToNone("input")
            
         document.body.appendChild(fakeCursor);
 
@@ -217,4 +223,13 @@ export class OverlayManager {
         }
         requestAnimationFrame(animate);
     }   
+
+    private async curserToNone(elementName:string) {
+        const elements = document.querySelectorAll(elementName);
+
+        elements.forEach((element) => {
+            console.log(elementName, element);
+            (element as HTMLElement).style.setProperty('cursor', 'none');
+        });
+    }
 }
