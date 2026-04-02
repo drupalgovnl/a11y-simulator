@@ -1,11 +1,11 @@
 //  this class is used to create the overlay classes, to sepperate logic.
 import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
-import { CataractSimulation } from "./CataractSimulation";
+import { CataractSimulation } from "./cataract/CataractSimulation";
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
-import { GlaucomaSimulation } from "./GlaucomaSimulation";
+import { GlaucomaSimulation } from "./glaucoma/GlaucomaSimulation";
 import {Disability, Reset} from "./Types";
 import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
-import { ParkinsonsSimulation } from "./ParkinsonsSimulation";
+import { ParkinsonsSimulation } from "./parkinsons/ParkinsonsSimulation";
 import {DyslexiaMirrorFunctionality} from "./dyslexia/DyslexiaMirrorFunctionality";
 import {DyslexiaSpacesFunctionality} from "./dyslexia/DyslexiaSpacesFunctionality";
 import {DyslexiaSwitchFunctionality} from "./dyslexia/DyslexiaSwitchFunctionality";
