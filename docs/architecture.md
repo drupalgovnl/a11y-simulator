@@ -38,8 +38,8 @@ sequenceDiagram
 ```
 
 This is our project structure base.
-* [dist](./dist)
-* [docs](./doc)
+* [dist](../dist)
+* [docs](../doc)
 * [img](../img/)
 * [src](../src)
     * [controllers](../src/controllers)
