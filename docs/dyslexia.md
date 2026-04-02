@@ -1,45 +1,153 @@
-# Technical Documentation: Dyslexia feature
+# Technical Documentation: Dyslexia
 
-## The Dyslexia Feature/Options
-Dyslexia experiences differ per person. To maximize the experience to the best of the application's ability, it was chosen to create multiple effects corresponding to different forms of dyslexia, that can be turned on simultaneously. The following forms of dyslexia, or common occurring symptoms were implemented:
+## Table of Contents
+1. [Dyslexia Simulation]()
+2. [Changing DOM Content]()
+3. [The Mirroring Feature]()
+4. [The Word Order Feature]()
+5. [The Space Feature]()
+6. [The Character Order Feature]()
 
-1. Mirroring of Characters
-2. Changing the word order in sentences
-3. Changing the use of spaces in sentences
-4. changing the order of characters in a word in sentences
+## Dyslexia Simulation
 
-As previously stated, each of these effects can be turned on singularly, as well as simultaneously. 
+Dyslexia affects people in different ways. The application supports multiple effects to reflect this. Each effect targets a common symptom. Users can enable one or more effects at the same time.
 
-In the project directory, there is a separate folder called "dyslexia" that houses the multiple forms in the form of typescript classes corresponding to each of the form/functionalities listed above.
+The following effects are implemented:
 
-### Changing DOM content
-Most logic included in the dyslexia functionalities includes making changes in the DOM. There are several ways to do this, the idea is to change the content while not changing any other content besides text. So list items should stay as list items, images should remain as images. For this reason it was chosen to use a tree walker over the document. The TreeWalker object represents the nodes of a document sub-tree and a position within them. This means we can change nodes and it will still be put in the correct position. We create a treewalker for the entire HTML body, and use the filter SHOW_TEXT, so that only text nodes will be taken into account. 
+1. Character mirroring
+2. Word order changes
+3. Space usage changes
+4. Character order changes within words
 
-The Treewalker works like an iterator. You can loop through the filtered items by using the nextNode() function, then its content can be editted. Every kind of DOM node is represented by an interface base on the Node Interface. The value can be obtained and set by calling the node.nodeValue attribute.
+Each effect can be toggled with a checkbox. Checkboxes were chosen to allow multiple selections. This makes it clear that effects can run together. It also lets users explore combinations.
 
-By working with the Treewalker you can filter out the nodes you need, and only those. And they are also kept in context of the html, you know the node comes from in terms of the location on the document.
+All dyslexia-related logic is stored in the `dyslexia` folder. Each effect is implemented as a TypeScript class. These classes extend a shared `DyslexiaSimulation` base class.
 
-### Mirroring
-Mirroring means that the characters will resemble one of their mirror-variants. For example, the b would become a d or a p. People who have dyslexia sometimes experience this as part of their struggles.
+The base class provides common utilities. These include:
 
-The logic for the mirroring can be found in the `src/models/dyslexia/DyslexiaMirrorFunctionality.ts` file.
-It implements the IDisabilitySimulation because it is a Disability. This means it has an `onActivate`, `onDeactivate`, and `onUpdate` function as part of its class.
+- A randomizer for triggering effects
+- A `TreeWalker` helper to iterate over Document Object Model (DOM) nodes
 
-When the mirroring gets activated, the goal is to mirror characters. 
+More details on DOM handling are described below.
 
+## Changing DOM Content
 
-### Changing Word Order
+Most features modify text in the Document Object Model (DOM). The goal is to change text only, without affecting structure. Elements such as lists and images must remain unchanged.
 
-The logic for the word order can be found in the `src/models/dyslexia/DyslexiaWordOrderFunctionality.ts` file.
-It implements the IDisabilitySimulation because it is a Disability. This means it has an `onActivate`, `onDeactivate`, and `onUpdate` function as part of its class.
+A `TreeWalker` is used for this purpose. It traverses the DOM and selects only text nodes. This is done by filtering with `SHOW_TEXT`.
 
+The `TreeWalker` works like an iterator. You can loop through nodes using `nextNode()`. Each node exposes its value through `node.nodeValue`. This value can be read and updated directly.
 
-### Changing the use of spaces
+This approach has two advantages:
 
-The logic for the use of spaces can be found in the `src/models/dyslexia/DyslexiaSpacesFunctionality.ts` file.
-It implements the IDisabilitySimulation because it is a Disability. This means it has an `onActivate`, `onDeactivate`, and `onUpdate` function as part of its class.
+- Only relevant nodes are processed
+- Each node keeps its position in the document
 
-### Changing order of characters
+Each change is stored in a record. Every effect has its own record. The record maps modified text to the original text.
 
-The logic for the order of characters in words can be found in the `src/models/dyslexia/DyslexiaSwitchFunctionality.ts` file.
-It implements the IDisabilitySimulation because it is a Disability. This means it has an `onActivate`, `onDeactivate`, and `onUpdate` function as part of its class.
+When an effect is disabled, this record is used to restore the original values.
+
+There is one limitation. Records are not shared between effects. If multiple effects are active, they do not track each other’s changes. Disabling effects in a different order may lead to incorrect text. In this case, the reset button restores the correct state.
+
+## Features
+### The Mirroring Feature
+
+Mirroring replaces characters with visually similar alternatives. These alternatives resemble how some letters may appear reversed. For example, `b` may become `d` or `p`. This effect simulates a common reading difficulty where characters are confused with their mirrored forms.
+
+The logic is implemented in:  
+`src/models/dyslexia/DyslexiaMirrorFunctionality.ts`
+
+This class implements the `IDisabilitySimulation` interface. It defines `onActivate`, `onDeactivate`, and `onUpdate`.
+
+#### onActivate
+
+A `TreeWalker` is created. Each text node is processed word by word.
+
+Each node is split into words using spaces. Each word is then processed character by character. For each character, a mirrored variant may be selected. The selection is based on predefined mappings.
+
+The modified words are collected in a new list. This list is joined into a string using spaces. The result is assigned to `node.nodeValue`.
+
+#### onDeactivate
+
+A new `TreeWalker` is created to iterate over all text nodes.
+
+Each node is checked against the record created during activation (see the _Changing DOM Content_ section). This record stores a mapping between modified text and the original text.
+
+If the current node value matches a modified entry in the record, the original value is retrieved. The node is then updated with this original value. This restores the text to its state before the mirroring effect was applied.
+
+---
+
+### Word Order
+
+This effect changes the order of words within a sentence. It simulates cases where words are perceived in a different sequence than intended. This can make sentences harder to follow.
+
+The logic is implemented in:  
+`src/models/dyslexia/DyslexiaWordOrderFunctionality.ts`
+
+#### onActivate
+
+A `TreeWalker` is created. Each text node is split into words.
+
+Two random indices are generated. These indices point to two words in the same sentence. The selected words are swapped.
+
+This process keeps the total number of words the same. Only their positions change. The updated list is joined into a string and written back to the node.
+
+#### onDeactivate
+
+A new `TreeWalker` is created to iterate over all text nodes.
+
+Each node is checked against the record created during activation (see the _Changing DOM Content_ section). This record stores a mapping between modified text and the original text.
+
+If the current node value matches a modified entry in the record, the original value is retrieved. The node is then updated with this original value. This restores the text to its state before the mirroring effect was applied.
+
+---
+
+### Space Usage
+
+This effect changes how spaces appear in text. Spaces may be removed or inserted at random positions. This can cause words to merge or split unexpectedly. As a result, new word boundaries may appear where they should not exist.
+
+The logic is implemented in:  
+`src/models/dyslexia/DyslexiaSpacesFunctionality.ts`
+
+#### onActivate
+
+A `TreeWalker` is created. Spaces are first removed from the text to create a continuous string.
+
+The string is then processed character by character. At each step, a check determines if a space should be inserted. This check uses a fixed probability of 33%. This number was chosen by testing out various percentages. In the future it would be nice to have a bit more reasoning behind the probability, perhaps by talking to people with dyslexia.
+
+If a space is added, a flag is set. This flag prevents multiple spaces from being inserted in sequence. This ensures the output remains readable.
+
+#### onDeactivate
+
+A new `TreeWalker` is created to iterate over all text nodes.
+
+Each node is checked against the record created during activation (see the _Changing DOM Content_ section). This record stores a mapping between modified text and the original text.
+
+If the current node value matches a modified entry in the record, the original value is retrieved. The node is then updated with this original value. This restores the text to its state before the mirroring effect was applied.
+
+---
+
+### Character Order
+
+This effect changes the order of characters within words. It simulates cases where letters appear shuffled. This can result in words that are partially readable or unclear.
+
+The logic is implemented in:  
+`src/models/dyslexia/DyslexiaSwitchFunctionality.ts`
+
+#### onActivate
+
+A `TreeWalker` is created. Each text node is split into words.
+
+Each word is evaluated using a probability check. Currently, 40% of words are selected for modification.
+
+If a word is selected, two random indices are generated. These indices represent positions within the word. The characters at these positions are swapped.
+
+The modified word is added to the result list. Words that are not selected remain unchanged. The final list is joined into a string and written back to the node.
+
+#### onDeactivate
+
+A new `TreeWalker` is created to iterate over all text nodes.
+
+Each node is checked against the record created during activation (see the _Changing DOM Content_ section). This record stores a mapping between modified text and the original text.
+
+If the current node value matches a modified entry in the record, the original value is retrieved. The node is then updated with this original value. This restores the text to its state before the mirroring effect was applied.
