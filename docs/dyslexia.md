@@ -1,12 +1,12 @@
 # Technical Documentation: Dyslexia
 
 ## Table of Contents
-1. [Dyslexia Simulation]()
-2. [Changing DOM Content]()
-3. [The Mirroring Feature]()
-4. [The Word Order Feature]()
-5. [The Space Feature]()
-6. [The Character Order Feature]()
+1. [Dyslexia Simulation](#dyslexia-simulation)
+2. [Changing Content](#changing-content)
+3. [The Mirroring Feature](#the-mirroring-feature)
+4. [The Word Order Feature](#the-word-order-feature)
+5. [The Space Feature](#the-space-feature)
+6. [The Character Order Feature](#the-character-order-feature)
 
 ## Dyslexia Simulation
 
@@ -30,7 +30,7 @@ The base class provides common utilities. These include:
 
 More details on DOM handling are described below.
 
-## Changing DOM Content
+## Changing Content
 
 Most features modify text in the Document Object Model (DOM). The goal is to change text only, without affecting structure. Elements such as lists and images must remain unchanged.
 
@@ -77,7 +77,7 @@ If the current node value matches a modified entry in the record, the original v
 
 ---
 
-### Word Order
+### The Word Order Feature
 
 This effect changes the order of words within a sentence. It simulates cases where words are perceived in a different sequence than intended. This can make sentences harder to follow.
 
@@ -102,7 +102,7 @@ If the current node value matches a modified entry in the record, the original v
 
 ---
 
-### Space Usage
+### The Space Feature
 
 This effect changes how spaces appear in text. Spaces may be removed or inserted at random positions. This can cause words to merge or split unexpectedly. As a result, new word boundaries may appear where they should not exist.
 
@@ -127,7 +127,7 @@ If the current node value matches a modified entry in the record, the original v
 
 ---
 
-### Character Order
+### The Character Order Feature
 
 This effect changes the order of characters within words. It simulates cases where letters appear shuffled. This can result in words that are partially readable or unclear.
 
