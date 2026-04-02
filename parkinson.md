@@ -27,8 +27,4 @@ For the requestAnimationFrame a timestamp is given to automatically give the cur
 RequestAnimationFrame(animate) is called twice. 
 Underneath the function requestAnimationFrame initializes the animation and the second within the function is to repeat the animation, because the tremor needs to continue.
 
-One problem was that the real cursor became visible, once it hovered over a link, button, span, or input area. 
-The goal was to keep the real cursor invisible anywhere on the webpage. 
-This problem was solved by making an async function cursorToNone that iterates the whole page and applies a style change per element and makes the cursor invisible. 
-It was not possible to change the style of all elements at the same time. 
-Because of this we used await this.curserToNone so the webpage iterates for each element and waits for the next.  
+One problem was that the real cursor became visible, once it hovered over a link, button, span, or input area. The goal was to keep the real cursor invisible anywhere on the webpage. This problem was solved by making an async function cursorToNone that iterates the whole page and applies a style change per element (link, button, span, input) and makes the cursor invisible. It was not possible to change the style of all elements at the same time. Because of this we used curserToNone so the webpage iterates for each element and waits for the next.
