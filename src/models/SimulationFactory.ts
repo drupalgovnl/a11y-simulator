@@ -4,7 +4,7 @@ import { CataractSimulation } from "./cataract/CataractSimulation";
 import { OverlayManager } from "../DOM-Logic/OverlayManager";
 import { GlaucomaSimulation } from "./glaucoma/GlaucomaSimulation";
 import {Disability, Reset} from "./Types";
-import { VisualImpairedSimulation } from "./VisualImpairedSimulation";
+import { VisualImpairedSimulation } from "./visualImpaired/VisualImpairedSimulation";
 import { ParkinsonsSimulation } from "./parkinsons/ParkinsonsSimulation";
 import {DyslexiaMirrorFunctionality} from "./dyslexia/DyslexiaMirrorFunctionality";
 import {DyslexiaSpacesFunctionality} from "./dyslexia/DyslexiaSpacesFunctionality";
