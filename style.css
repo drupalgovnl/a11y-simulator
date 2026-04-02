@@ -1,41 +1,40 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-color: #eef7fc;
+}
+
 .extension-menu {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-
-    align-items: center;
+justify-content: center;
     width: 15rem;
     height: 100%;
     padding: 1rem;
 }
 
-.title {
-    padding: 0;
-    margin: 0;
+section {
+    width: 100%;
 }
 
-.buttons {
+.header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-content: center;
     gap: 1rem;
+    margin-bottom: 1rem;
 
-    button {
-        background-color: lightgray;
-        border: 2px solid darkgray;
-        border-radius: 0.75rem;
-        font-weight: 700;
-        font-size: 0.75rem;
-        padding: 0.5rem;
-        cursor: pointer;
+    .logo {
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
-    button:hover {
-        background-color: darkgray;
+    .title {
+        padding: 0;
+        margin: 0;
     }
-}
-
-.neuro-title {
-    margin: 0;
 }
 
 .dyslexia {
@@ -43,20 +42,17 @@
     flex-direction: column;
 
     label {
-        font-weight: 600;
+        font-weight: 500;
     }
 
     input {
         cursor: pointer;
     }
 
-
     .dyslexia-menu {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        padding-bottom: 1rem;
-
 
         .check-option {
             display: flex;
@@ -67,22 +63,57 @@
     }
 }
 
+.reset {
+    margin-top: 1.5rem;
 
-.blackOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    #resetSim {
+        color: white;
+        background-color: #a90061;
+    }
 
-    background: rgba(0,0,0,0.85);
-
-    z-index: 1000;
-
-    pointer-events: none;
+    #resetSim:hover {
+        background-color: #cb66a0;
+    }
 }
 
-.main {
-    height: 400px;
-    width: 200px;
+.button-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+button {
+    background-color: #bcdff0;
+    border: none;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0.6rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ddeff8;
+}
+
+a {
+    color: #007bc7;
+}
+
+a:active {
+    color: #a90061;
+}
+
+.sub-section {
+    margin-left: 1rem;
+}
+
+.sub-section-title {
+    margin: 0 0 0.5rem 0;
+}
+
+.end {
+    width: 100%;
+    display: flex;
+    justify-content: end;
 }
