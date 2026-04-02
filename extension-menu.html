@@ -11,14 +11,20 @@
     <main class="extension-menu">
 
         <section class="header">
-            <img src="./img/A11Y-sim-icon-64.png"
-                alt="icon of a monitor that displays a heart with a checkmark inside it" />
+            <img class="logo" src="./img/A11Y-sim-icon-64.png"
+                alt="icon of a monitor that displays a heart with a checkmark inside it" 
+                height="48px" width="48px"/>
 
             <h1 class="title"> Accessibility Simulator</h1>
         </section>
 
-        <div class="buttons">
+        <section class="about">
+            <p>
+            Experience the web with different impairments - and see why the <a href="https://www.w3.org/TR/WCAG22/" target="_blank">WCAG</a> are essential for digital accesibility.</br>
+            </p>
+        </section>
 
+        <section class="menu">
             <section class="visual">
                 <h3> Visual impairment</h3>
                 <div class="button-list">
@@ -62,15 +68,14 @@
             </section>
 
             <section class="settings">
-                <h3>Settings</h3>
-                <label for="intensity-range">Intensity</label>
+                <h3>Intensity</h3>
                 <input type="range" min="0" max="50" value="0" class="intensity-slider" id="intensity-range">
-                <div class="end top-space">
-                    <button id="resetSim">Reset</button>
-                </div>
             </section>
+        </section>
 
-        </div>
+                <section class="reset end">
+            <button id="resetSim">Reset all filters</button>
+        </section>
 
     </main>
     <script src="dist/EventListeners.js"></script>
