@@ -1,5 +1,5 @@
-import { OverlayManager } from "../DOM-Logic/OverlayManager";
-import { IDisabilitySimulation } from "../interfaces/IDisabilitySimulation";
+import { OverlayManager } from "../../DOM-Logic/OverlayManager";
+import { IDisabilitySimulation } from "../../interfaces/IDisabilitySimulation";
 
 export class ParkinsonsSimulation implements IDisabilitySimulation  {
     private OverlayManager: OverlayManager;
