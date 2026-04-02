@@ -6,7 +6,7 @@
     align-items: center;
     width: 15rem;
     height: 100%;
-    padding: 1rem;
+    /*padding: 1rem;*/
 }
 
 .title {
@@ -82,7 +82,7 @@
     pointer-events: none;
 }
 
-.main {
-    height: 400px;
-    width: 200px;
-}
+/*.main {*/
+/*    height: 400px;*/
+/*    width: 200px;*/
+/*}*/
