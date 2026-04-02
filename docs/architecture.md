@@ -7,6 +7,7 @@ This document outlines the key concepts, architecture, and best practices for bu
     - Use the Chrome Extensions API's
     - Communicate between the UI and the Webpage (DOM) using the Message API.
     - In depth guide how each disability is created.
+        - [Dyslexia](./Dyslexia/dyslexia.md)
 
 
 # Architecture Overview
